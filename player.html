@@ -7,6 +7,7 @@
         body { margin: 0; background: black; }
         video { width: 100%; height: 100vh; }
         .status { position: fixed; bottom: 20px; left: 20px; color: white; background: rgba(0,0,0,0.7); padding: 10px; font-family: monospace; font-size: 14px; border-radius: 5px; z-index: 999; }
+        .error { color: #ff6666; }
     </style>
 </head>
 <body>
@@ -14,21 +15,20 @@
     <div class="status" id="status">Loading...</div>
 
     <script>
-        // ==========================================
-        // >>> REPLACE WITH YOUR REAL VALUES <<<
-        // ==========================================
-        const MPD_URL = "https://otte.cache.aiv-cdn.net/bom-nitro/live/clients/dash/enc/pnu10tp36z/out/v1/912e9db56d75403b8a9ac0a719110f36/cenc.mpd";
+        // ========== YOUR VALUES ==========
+        const MPD_URL = "https://ottec.cache.av.dn.net/bom-nitro/live/clients/dash/enc/pnu10tp36z/out/v1/912a9db56d75403b8a9ac0a719110f36/cenc.mp4";
         
         const CLEAR_KEYS = {
-            "192b1115da041585c77200128549efa1":"634e10efe4abbb14be400a3ccbac0258"
+            "192b1115da041585c77200128549efa1": "634e10efe4abb14be400a3ccbac02580"
         };
-        // ==========================================
+        // =================================
         
         const video = document.getElementById('video');
         const statusDiv = document.getElementById('status');
         
-        function updateStatus(msg) {
+        function updateStatus(msg, isError = false) {
             statusDiv.innerHTML = msg;
+            statusDiv.style.color = isError ? '#ff6666' : 'white';
             console.log(msg);
         }
         
@@ -36,26 +36,23 @@
         
         const player = dashjs.MediaPlayer().create();
         
-        // Setup DRM with clear keys (only if REAL keys are provided)
-        const firstKeyId = Object.keys(CLEAR_KEYS)[0];
-        if (firstKeyId !== "192b1115da041585c77200128549efa1") {
-            updateStatus("Setting up Clear Key DRM...");
-            player.setProtectionData({
-                "clearkey": {
-                    "clearkeys": CLEAR_KEYS
-                }
-            });
-        }
+        // THIS IS THE CRITICAL PART - Setup DRM with clear keys
+        updateStatus("Setting up Clear Key DRM...");
+        player.setProtectionData({
+            "clearkey": {
+                "clearkeys": CLEAR_KEYS
+            }
+        });
         
         // Error handling
         player.on(dashjs.MediaPlayer.events.ERROR, function(e) {
-            var errorMsg = "Unknown error";
+            let errorMsg = "Unknown error";
             if (e.error) {
                 if (e.error.message) errorMsg = e.error.message;
-                else if (e.error.code) errorMsg = "Error code: " + e.error.code;
+                else if (typeof e.error === 'string') errorMsg = e.error;
                 else errorMsg = JSON.stringify(e.error);
             }
-            updateStatus("❌ ERROR: " + errorMsg);
+            updateStatus("ERROR: " + errorMsg, true);
             console.error("Full error:", e);
         });
         
@@ -70,12 +67,8 @@
         });
         
         // Start playback
-        try {
-            updateStatus("Loading: " + MPD_URL.substring(0, 60) + "...");
-            player.initialize(video, MPD_URL, true);
-        } catch(err) {
-            updateStatus("❌ Failed: " + err.message);
-        }
+        updateStatus("Loading stream...");
+        player.initialize(video, MPD_URL, true);
     </script>
 </body>
 </html>
