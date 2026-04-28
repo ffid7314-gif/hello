@@ -1,127 +1,81 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>My Stream</title>
+    <title>DASH Stream</title>
     <script src="https://cdn.dashjs.org/latest/dash.all.min.js"></script>
     <style>
-        * { margin: 0; padding: 0; }
-        body { background: #0a0a0a; font-family: Arial, sans-serif; }
-        .video-container { 
-            max-width: 1280px; 
-            margin: 20px auto; 
-            position: relative;
-        }
-        video { 
-            width: 100%; 
-            border-radius: 12px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
-        }
-        .info-panel {
-            background: #1a1a1a;
-            color: white;
-            padding: 15px;
-            margin-top: 20px;
-            border-radius: 8px;
-            font-family: monospace;
-        }
-        .status { color: #00ff00; }
-        .error { color: #ff4444; }
-        button {
-            background: #0066cc;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            margin: 5px;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        button:hover { background: #0052a3; }
-        select {
-            padding: 10px;
-            margin: 5px;
-            border-radius: 5px;
-        }
+        body { margin: 0; background: black; }
+        video { width: 100%; height: 100vh; }
+        .status { position: fixed; bottom: 20px; left: 20px; color: white; background: rgba(0,0,0,0.7); padding: 10px; font-family: monospace; font-size: 14px; border-radius: 5px; z-index: 999; }
     </style>
 </head>
 <body>
-    <div class="video-container">
-        <video id="video" controls autoplay></video>
-        
-        <div class="info-panel">
-            <div>📡 Status: <span id="status" class="status">Connecting...</span></div>
-            <div>🎬 Quality: <span id="quality">Auto</span></div>
-            <div>📊 Buffer: <span id="buffer">0</span> seconds</div>
-            <div>👀 Viewers: <span id="viewers">?</span> (estimate)</div>
-            <hr>
-            <button onclick="setQuality('auto')">Auto Quality</button>
-            <button onclick="setQuality(0)">Low (360p)</button>
-            <button onclick="setQuality(1)">Medium (480p)</button>
-            <button onclick="setQuality(2)">High (720p)</button>
-            <button onclick="setQuality(3)">HD (1080p)</button>
-            <select id="audioTrack" onchange="changeAudio()">
-                <option value="0">Audio Track 1</option>
-            </select>
-        </div>
-    </div>
+    <video id="video" controls autoplay></video>
+    <div class="status" id="status">Loading...</div>
 
     <script>
-        // ========== YOUR MPD AND KEYS HERE ==========
+        // ==========================================
+        // >>> REPLACE WITH YOUR REAL VALUES <<<
+        // ==========================================
         const MPD_URL = "https://otte.cache.aiv-cdn.net/bom-nitro/live/clients/dash/enc/pnu10tp36z/out/v1/912e9db56d75403b8a9ac0a719110f36/cenc.mpd";
+        
         const CLEAR_KEYS = {
             "192b1115da041585c77200128549efa1":"634e10efe4abbb14be400a3ccbac0258"
         };
-        // ============================================
+        // ==========================================
         
-        const video = document.getElementById("video");
+        const video = document.getElementById('video');
+        const statusDiv = document.getElementById('status');
+        
+        function updateStatus(msg) {
+            statusDiv.innerHTML = msg;
+            console.log(msg);
+        }
+        
+        updateStatus("Initializing player...");
+        
         const player = dashjs.MediaPlayer().create();
         
-        // Setup DRM
-        if (CLEAR_KEYS["192b1115da041585c77200128549efa1"] !== "634e10efe4abbb14be400a3ccbac0258") {
+        // Setup DRM with clear keys (only if REAL keys are provided)
+        const firstKeyId = Object.keys(CLEAR_KEYS)[0];
+        if (firstKeyId !== "192b1115da041585c77200128549efa1") {
+            updateStatus("Setting up Clear Key DRM...");
             player.setProtectionData({
-                "clearkey": { "clearkeys": CLEAR_KEYS }
+                "clearkey": {
+                    "clearkeys": CLEAR_KEYS
+                }
             });
         }
         
-        // Quality selection
-        function setQuality(level) {
-            if (level === 'auto') {
-                player.setAutoSwitchQualityFor('video', true);
-                document.getElementById('quality').innerText = 'Auto';
-            } else {
-                player.setAutoSwitchQualityFor('video', false);
-                player.setQualityFor('video', level);
-                document.getElementById('quality').innerText = `Manual (${level})`;
+        // Error handling
+        player.on(dashjs.MediaPlayer.events.ERROR, function(e) {
+            var errorMsg = "Unknown error";
+            if (e.error) {
+                if (e.error.message) errorMsg = e.error.message;
+                else if (e.error.code) errorMsg = "Error code: " + e.error.code;
+                else errorMsg = JSON.stringify(e.error);
             }
-        }
-        
-        // Audio track selection
-        function changeAudio() {
-            const track = document.getElementById('audioTrack').value;
-            player.setCurrentAudioTrack(parseInt(track));
-        }
-        
-        // Update UI with playback info
-        player.on(dashjs.MediaPlayer.events.PLAYBACK_LOADED, () => {
-            // Get audio tracks
-            const audioTracks = player.getTracksFor('audio');
-            const select = document.getElementById('audioTrack');
-            select.innerHTML = '';
-            audioTracks.forEach((track, i) => {
-                select.innerHTML += `<option value="${i}">${track.lang || 'Audio'} ${track.kbps}kbps</option>`;
-            });
+            updateStatus("❌ ERROR: " + errorMsg);
+            console.error("Full error:", e);
         });
         
-        player.on(dashjs.MediaPlayer.events.PLAYBACK_BUFFERING_COMPLETED, () => {
-            document.getElementById('status').innerText = 'Playing ✅';
-            document.getElementById('status').className = 'status';
+        // Success
+        player.on(dashjs.MediaPlayer.events.CAN_PLAY, function() {
+            updateStatus("✅ PLAYING");
         });
         
-        setInterval(() => {
-            const buffer = player.getBufferLength('video') || 0;
-            document.getElementById('buffer').innerText = Math.round(buffer);
-        }, 1000);
+        // Buffering
+        player.on(dashjs.MediaPlayer.events.PLAYBACK_STALLED, function() {
+            updateStatus("⏳ Buffering...");
+        });
         
-        player.initialize(video, MPD_URL, true);
+        // Start playback
+        try {
+            updateStatus("Loading: " + MPD_URL.substring(0, 60) + "...");
+            player.initialize(video, MPD_URL, true);
+        } catch(err) {
+            updateStatus("❌ Failed: " + err.message);
+        }
     </script>
 </body>
 </html>
