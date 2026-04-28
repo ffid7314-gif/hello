@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Stream</title>
+    <script src="https://cdn.dashjs.org/latest/dash.all.min.js"></script>
+    <style>
+        * { margin: 0; padding: 0; }
+        body { background: #0a0a0a; font-family: Arial, sans-serif; }
+        .video-container { 
+            max-width: 1280px; 
+            margin: 20px auto; 
+            position: relative;
+        }
+        video { 
+            width: 100%; 
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+        }
+        .info-panel {
+            background: #1a1a1a;
+            color: white;
+            padding: 15px;
+            margin-top: 20px;
+            border-radius: 8px;
+            font-family: monospace;
+        }
+        .status { color: #00ff00; }
+        .error { color: #ff4444; }
+        button {
+            background: #0066cc;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin: 5px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover { background: #0052a3; }
+        select {
+            padding: 10px;
+            margin: 5px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="video-container">
+        <video id="video" controls autoplay></video>
+        
+        <div class="info-panel">
+            <div>📡 Status: <span id="status" class="status">Connecting...</span></div>
+            <div>🎬 Quality: <span id="quality">Auto</span></div>
+            <div>📊 Buffer: <span id="buffer">0</span> seconds</div>
+            <div>👀 Viewers: <span id="viewers">?</span> (estimate)</div>
+            <hr>
+            <button onclick="setQuality('auto')">Auto Quality</button>
+            <button onclick="setQuality(0)">Low (360p)</button>
+            <button onclick="setQuality(1)">Medium (480p)</button>
+            <button onclick="setQuality(2)">High (720p)</button>
+            <button onclick="setQuality(3)">HD (1080p)</button>
+            <select id="audioTrack" onchange="changeAudio()">
+                <option value="0">Audio Track 1</option>
+            </select>
+        </div>
+    </div>
+
+    <script>
+        // ========== YOUR MPD AND KEYS HERE ==========
+        const MPD_URL = "https://otte.cache.aiv-cdn.net/bom-nitro/live/clients/dash/enc/pnu10tp36z/out/v1/912e9db56d75403b8a9ac0a719110f36/cenc.mpd";
+        const CLEAR_KEYS = {
+            "192b1115da041585c77200128549efa1":"634e10efe4abbb14be400a3ccbac0258"
+        };
+        // ============================================
+        
+        const video = document.getElementById("video");
+        const player = dashjs.MediaPlayer().create();
+        
+        // Setup DRM
+        if (CLEAR_KEYS["YOUR_KEY_ID_HERE"] !== "YOUR_KEY_VALUE_HERE") {
+            player.setProtectionData({
+                "clearkey": { "clearkeys": CLEAR_KEYS }
+            });
+        }
+        
+        // Quality selection
+        function setQuality(level) {
+            if (level === 'auto') {
+                player.setAutoSwitchQualityFor('video', true);
+                document.getElementById('quality').innerText = 'Auto';
+            } else {
+                player.setAutoSwitchQualityFor('video', false);
+                player.setQualityFor('video', level);
+                document.getElementById('quality').innerText = `Manual (${level})`;
+            }
+        }
+        
+        // Audio track selection
+        function changeAudio() {
+            const track = document.getElementById('audioTrack').value;
+            player.setCurrentAudioTrack(parseInt(track));
+        }
+        
+        // Update UI with playback info
+        player.on(dashjs.MediaPlayer.events.PLAYBACK_LOADED, () => {
+            // Get audio tracks
+            const audioTracks = player.getTracksFor('audio');
+            const select = document.getElementById('audioTrack');
+            select.innerHTML = '';
+            audioTracks.forEach((track, i) => {
+                select.innerHTML += `<option value="${i}">${track.lang || 'Audio'} ${track.kbps}kbps</option>`;
+            });
+        });
+        
+        player.on(dashjs.MediaPlayer.events.PLAYBACK_BUFFERING_COMPLETED, () => {
+            document.getElementById('status').innerText = 'Playing ✅';
+            document.getElementById('status').className = 'status';
+        });
+        
+        setInterval(() => {
+            const buffer = player.getBufferLength('video') || 0;
+            document.getElementById('buffer').innerText = Math.round(buffer);
+        }, 1000);
+        
+        player.initialize(video, MPD_URL, true);
+    </script>
+</body>
+</html>
