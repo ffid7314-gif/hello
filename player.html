@@ -1,58 +1,273 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>DASH Stream</title>
-    <script src="https://cdn.dashjs.org/latest/dash.all.min.js"></script>
+    <title>DASH Stream Player - All Channels</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.7.6/shaka-player.ui.min.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.7.6/controls.min.css" crossorigin="anonymous">
     <style>
-        body { margin: 0; background: black; }
-        video { width: 100%; height: 100vh; }
-        .status { position: fixed; bottom: 20px; left: 20px; color: white; background: rgba(0,0,0,0.7); padding: 10px; font-family: monospace; font-size: 14px; border-radius: 5px; z-index: 999; }
+        body { margin: 0; background: black; font-family: Arial, sans-serif; }
+        .video-container { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+        video { width: 100%; height: 100%; object-fit: contain; }
+        .info { position: fixed; bottom: 20px; left: 20px; color: white; background: rgba(0,0,0,0.7); padding: 8px 15px; border-radius: 5px; font-size: 12px; font-family: monospace; z-index: 100; }
+        .error { background: rgba(255,0,0,0.8); color: white; }
+        .stream-selector { position: fixed; top: 20px; right: 20px; background: rgba(0,0,0,0.85); padding: 12px; border-radius: 8px; z-index: 100; font-size: 14px; min-width: 200px; }
+        .stream-selector select { width: 100%; padding: 8px; margin-bottom: 8px; background: #333; color: white; border: 1px solid #666; border-radius: 4px; font-size: 14px; }
+        .stream-selector button { width: 100%; padding: 8px; background: #0066cc; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 14px; }
+        .stream-selector button:hover { background: #0052a3; }
+        .stream-selector label { color: white; display: block; margin-bottom: 5px; font-size: 12px; }
     </style>
 </head>
 <body>
-    <video id="video" controls autoplay></video>
-    <div class="status" id="status">Loading...</div>
+    <div class="video-container" data-shaka-player-container>
+        <video autoplay data-shaka-player id="video"></video>
+    </div>
+    <div class="info" id="info">Loading player...</div>
+    <div class="stream-selector">
+        <label>📺 Select Channel</label>
+        <select id="streamSelect">
+            <option value="">-- Choose a Stream --</option>
+        </select>
+        <button onclick="loadSelectedStream()">Load Channel</button>
+    </div>
 
     <script>
-        const MPD_URL = "https://ottb.live.cf.ww.aiv-cdn.net/lhr-nitro/live/clients/dash/enc/f0qvkrra8j/out/v1/f8fa17f087564f51aa4d5c700be43ec4/cenc.mpd";
+        // ================================================
+        // ALL STREAMS - COMPLETE LIST FROM ORIGINAL CODE
+        // ================================================
         
-        const CLEAR_KEYS = {
-            "'6d1708b185c6c4d7b37600520c7cc93c': '1aace05f58d8edef9697fd52cb09f441"
-        };
+        const videoConfigs = [
+            {
+                id: "SER1",
+                name: "🎮 SER1",
+                manifestUri: "https://dash2.antik.sk/stream/nvidia_sport_1/playlist_cenc.mpd",
+                drmConfig: { clearKeys: { "11223344556677889900112233445566": "4b80724d0ef86bcb2c21f7999d67739d" } }
+            },
+            {
+                id: "SKYMIX",
+                name: "🌤️ SKYMIX",
+                manifestUri: "https://otte.live.cf.ww.aiv-cdn.net/lhr-nitro/live/clients/dash/enc/tjz3qplazr/out/v1/546e7eee67cd472fb34f53112df73144/cenc.mpd",
+                drmConfig: { clearKeys: { "3c393a1661a7a0c306ed4b2d3f8c7b7e": "74583ae652f0ed1bed5fc713f577fe1e" } }
+            },
+            {
+                id: "SETENA",
+                name: "📺 SETENA",
+                manifestUri: "https://v4-kun-v13-cdn-02.live.cdn.cgates.lt/live/dash/561002/index.mpd",
+                drmConfig: { clearKeys: { "8ab2332442854e62b0018eec3ee58484": "37fdee8b6eef5c96001e8c6fc47bfc08" } }
+            },
+            {
+                id: "DAZNFAST",
+                name: "⚽ DAZN FAST",
+                manifestUri: "https://dyqiabnsd224t.cloudfront.net/dash/dazn-linear-504/stream.mpd?p=web",
+                drmConfig: { clearKeys: { 
+                    "cfb5e2b73bef4f3c878f25ab86a7451f": "0d6712bf2a84edcc93d001a9613f6fec",
+                    "8ab47741930c476780515f9a00decb0a": "7ab4b9ae5a48aa526e511a913b832769",
+                    "82f8e2a17dac44c0a18f660479349c59": "1b144f73e6fefe91cd05f850e2b589d0"
+                } }
+            },
+            {
+                id: "SER2",
+                name: "🎮 SER2",
+                manifestUri: "https://dash2.antik.sk/stream/nvidia_sport2/playlist_cenc.mpd",
+                drmConfig: { clearKeys: { "11223344556677889900112233445566": "4b80724d0ef86bcb2c21f7999d67739d" } }
+            },
+            {
+                id: "SPD",
+                name: "⚡ SPD",
+                manifestUri: "https://ottb.live.cf.ww.aiv-cdn.net/fra-nitro/live/clients/dash/enc/ssdefyhkkr/out/v1/cf01290cb7f64525bdf861580a016ca8/cenc.mpd",
+                drmConfig: { clearKeys: { "0ad4080cdff8c60b1233b22087f0b340": "285f129c5eca01dd08a5d5a14ad801c8" } }
+            },
+            {
+                id: "NOVA1",
+                name: "⭐ NOVA1",
+                manifestUri: "https://dash2.antik.sk/stream/nvidia_nova_sport1/playlist_cbcs.mpd",
+                drmConfig: { clearKeys: { "11223344556677889900112233445566": "4b80724d0ef86bcb2c21f7999d67739d" } }
+            },
+            {
+                id: "RTL_DE",
+                name: "🇩🇪 RTL Germany",
+                manifestUri: "https://pnowlive-a.akamaized.net/live/rtlhd/dash/rtlhd.mpd",
+                drmConfig: { clearKeys: { "57e48b99f3f6d4f13f5c5afdcca084ca": "29379a5e2d3405fad2f5d9cbe92586c3" } }
+            },
+            {
+                id: "SER3",
+                name: "🎮 SER3",
+                manifestUri: "https://dash2.antik.sk/stream/nvidia_sport2/playlist_cenc.mpd",
+                drmConfig: { clearKeys: { "11223344556677889900112233445566": "4b80724d0ef86bcb2c21f7999d67739d" } }
+            },
+            {
+                id: "USANETWORK",
+                name: "🇺🇸 USA Network",
+                manifestUri: "https://live-oneapp-prd-news.akamaized.net/Content/CMAF_OL2-CTR-4s/Live/channel(usa-west)/master.mpd",
+                drmConfig: { clearKeys: { "7f1648ec1c8836baa028e319d92e0841": "93ba967ec39964d9a6359044ec5c3500" } }
+            },
+            {
+                id: "NBC",
+                name: "🇺🇸 NBC",
+                manifestUri: "https://fsly.stream.peacocktv.com/Content/CMAF_CTR-4s/Live/channel(vc122ycnuy)/master.mpd",
+                drmConfig: { clearKeys: { "0020d88a6713159839743f655c5da7de": "ba9f34226301f69a4f0f13f65a1f92ec" } }
+            },
+            {
+                id: "UNIVERSO",
+                name: "🌎 UNIVERSO",
+                manifestUri: "https://live-oneapp-prd-news.akamaized.net/Content/CMAF_OL2-CTR-4s/Live/channel(universo-east)/master.mpd",
+                drmConfig: { clearKeys: { "96b67fa09140329a89b7a1ead134eda3": "c618d32c56cdc6cad8330eb98507ca3f" } }
+            },
+            {
+                id: "TELEMUNDO",
+                name: "🇺🇸 Telemundo",
+                manifestUri: "https://live-oneapp-prd-news.akamaized.net/Content/CMAF_OL2-CTR-4s/Live/channel(WNJU)/master.mpd",
+                drmConfig: { clearKeys: { "c71fe7bc82f037c6af21fd299d6341b0": "13223c98886ff43d3c5f271eeb457cc6" } }
+            },
+            {
+                id: "ITALIA1",
+                name: "🇮🇹 Italia 1",
+                manifestUri: "https://live03p-seg.msf.cdn.mediaset.net/live/ch-i1/i1-dash-widevine.isml/manifest.mpd",
+                drmConfig: { clearKeys: { "00f9f3c0783536b8ee91704e23b78016": "bfd04d6f544c9cc4d35cb13ab6778587" } }
+            },
+            {
+                id: "NOVA6",
+                name: "⭐ NOVA6",
+                manifestUri: "https://a151aivottlinear-a.akamaihd.net/OTTB/lhr-nitro/live/clients/dash/enc/9o6jmlyjpm/out/v1/ad80a9bfecc6438f82f2af41c58d7fb8/cenc.mpd",
+                drmConfig: { clearKeys: { "ca4316630f56d6f33e9ff73b7ad211d1": "72c54e5646055f444e99bc1123919e89" } }
+            },
+            {
+                id: "PREMIER_SPORTS_1",
+                name: "⚽ Premier Sports 1",
+                manifestUri: "https://otte.live.cf.ww.aiv-cdn.net/fra-nitro/live/dash/enc/vwq77hfgzw/out/v1/b858e0b845c64cec953887bd4269e4ea/cenc.mpd",
+                drmConfig: { clearKeys: { "1444f4235529f183f0a5a486befe9cdb": "e5e3fec67a1bb3472a2089c8a0a2557f" } }
+            },
+            {
+                id: "SPORSTAR2",
+                name: "⭐ SPORSTAR2",
+                manifestUri: "https://fta3-cdn-flr.visionplus.id/out/v1/d2c68a3dfb644808b416bd90dcc92d5f/index.mpd",
+                drmConfig: { clearKeys: { "911e72adf36946afbdbb4f80782a8394": "08aec548a851ba64b7172ae7f05cb91c" } }
+            },
+            {
+                id: "CANALE5",
+                name: "🇮🇹 Canale 5",
+                manifestUri: "https://live03p-seg.msf.cdn.mediaset.net/live/ch-c5/c5-dash-widevine.isml/manifest.mpd",
+                drmConfig: { clearKeys: { "00f9f3c0783536b8ce4a30a01a52e082": "e926f7d45af4f7d154c990eae6a2d937" } }
+            },
+            {
+                id: "SPOTV",
+                name: "⚽ SPOTV",
+                manifestUri: "https://otte.live.fly.ww.aiv-cdn.net/gru-nitro/live/clients/dash-sd/enc/rkhugudynd/out/v1/f7763e695c3b469594ed89fa163ebf0c/cenc-sd.mpd",
+                drmConfig: { clearKeys: { "eaea45512d137def15b209a089cafd14": "8d42db746ed0c4df61729b0d68d42bd7" } }
+            },
+            {
+                id: "TNT_1_GB",
+                name: "🎬 TNT 1 GB",
+                manifestUri: "https://a122aivottlinear-a.akamaihd.net/OTTB/bom-nitro/live/dash/enc/wf8usag51e/out/v1/bd3b0c314fff4bb1ab4693358f3cd2d3/cenc.mpd",
+                drmConfig: { clearKeys: { "f288380ca4cef9ad3f27a92a08e9bb8b": "9f18d26291d9230833501f7f822f6875" } }
+            },
+            {
+                id: "TNT_2_GB",
+                name: "🎬 TNT 2 GB",
+                manifestUri: "https://qw.live.pv-cdn.net/OTTB/lhr-nitro/live/clients/dash/enc/fb6jy4pxts/out/v1/f8fa17f087564f51aa4d5c700be43ec4/cenc.mpd",
+                drmConfig: { clearKeys: { "f288380ca4cef9ad3f27a92a08e9bb8b": "9f18d26291d9230833501f7f822f6875" } }
+            },
+            {
+                id: "TNT_3_GB",
+                name: "🎬 TNT 3 GB",
+                manifestUri: "https://live-pv-ta.amazon.fastly-edge.com/iad-nitro/live/clients/dash/enc/5sxuux529k/out/v1/bb548a3626cd4708afbb94a58d71dce9/cenc.mpd",
+                drmConfig: { clearKeys: { "1d96ab366bbe6451edf7407b58e2fa16": "0116201f4a63ac5bf5787d2c610c41a7" } }
+            },
+            {
+                id: "TNT_4_GB",
+                name: "🎬 TNT 4 GB",
+                manifestUri: "https://a129aivottlinear-a.akamaihd.net/OTTB/bom-nitro/live/dash/enc/i2pcjr4pe5/out/v1/912e9db56d75403b8a9ac0a719110f36/cenc.mpd",
+                drmConfig: { clearKeys: { "192b1115da041585c77200128549efa1": "634e10efe4abbb14be400a3ccbac0258" } }
+            },
+            {
+                id: "TNT_5_GB",
+                name: "🎬 TNT 5 GB",
+                manifestUri: "https://ottb.live.cf.ww.aiv-cdn.net/lhr-nitro/live/clients/dash/enc/gesdwrdncn/out/v1/79e752f1eccd4e18b6a8904a0bc01f2d/cenc.mpd",
+                drmConfig: { clearKeys: { "60c0d9b41475e01db4ffb91ed557fbcc": "36ee40e58948ca15e3caba8d47b8f34b" } }
+            }
+        ];
         
-        const video = document.getElementById('video');
-        const statusDiv = document.getElementById('status');
+        // ================================================
+        // PLAYER CODE - DON'T CHANGE BELOW
+        // ================================================
         
-        function updateStatus(msg) {
-            statusDiv.innerHTML = msg;
-            console.log(msg);
+        const infoDiv = document.getElementById('info');
+        const streamSelect = document.getElementById('streamSelect');
+        
+        // Populate dropdown with all streams
+        videoConfigs.forEach(config => {
+            const option = document.createElement('option');
+            option.value = config.id;
+            option.textContent = config.name || config.id;
+            streamSelect.appendChild(option);
+        });
+        
+        function updateInfo(message, isError = false) {
+            infoDiv.innerHTML = message;
+            infoDiv.className = isError ? 'info error' : 'info';
+            console.log(message);
         }
         
-        updateStatus("Initializing player...");
+        // Request filter for headers
+        function requestFilter(request) {
+            request.headers['Origin'] = 'https://rzn079.github.io';
+            request.headers['Referer'] = 'https://rzn079.github.io/blogs/v2.html';
+        }
         
-        const player = dashjs.MediaPlayer().create();
-        
-        // Setup DRM
-        updateStatus("Setting up Clear Key DRM...");
-        player.setProtectionData({
-            "clearkey": {
-                "clearkeys": CLEAR_KEYS
+        async function loadSelectedStream() {
+            const id = streamSelect.value;
+            if (!id) {
+                updateInfo('Please select a stream from the dropdown', true);
+                return;
             }
-        });
+            await loadStream(id);
+        }
         
-        // Error handling
-        player.on(dashjs.MediaPlayer.events.ERROR, function(e) {
-            updateStatus("ERROR: " + JSON.stringify(e.error));
-            console.error(e);
-        });
+        async function loadStream(id) {
+            const config = videoConfigs.find(cfg => cfg.id === id);
+            if (!config) {
+                updateInfo(`Stream "${id}" not found`, true);
+                return;
+            }
+            
+            updateInfo(`Loading: ${config.name || config.id}...`);
+            
+            const video = document.getElementById('video');
+            const ui = video['ui'];
+            const controls = ui.getControls();
+            const player = controls.getPlayer();
+            
+            // Add request headers
+            player.getNetworkingEngine().registerRequestFilter(requestFilter);
+            
+            // Setup DRM
+            if (config.drmConfig && Object.keys(config.drmConfig.clearKeys || {}).length > 0) {
+                updateInfo(`Setting up DRM for ${config.name || config.id}...`);
+                player.configure({ drm: config.drmConfig });
+            }
+            
+            try {
+                await player.load(config.manifestUri);
+                updateInfo(`✅ Playing: ${config.name || config.id}`);
+                await video.play();
+            } catch (error) {
+                updateInfo(`❌ Error: ${error.message}`, true);
+                console.error('Full error:', error);
+            }
+        }
         
-        // Success
-        player.on(dashjs.MediaPlayer.events.CAN_PLAY, function() {
-            updateStatus("PLAYING");
-        });
+        async function init() {
+            updateInfo('✅ Player ready. Select a channel from the dropdown.');
+        }
         
-        // Start
-        player.initialize(video, MPD_URL, true);
+        document.addEventListener('shaka-ui-loaded', init);
+        
+        // Auto-load UNIVERSO after 1 second (like original)
+        setTimeout(() => {
+            if (streamSelect.children.length > 0) {
+                streamSelect.value = "UNIVERSO";
+                loadStream("UNIVERSO");
+            }
+        }, 1000);
     </script>
 </body>
 </html>
