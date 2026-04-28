@@ -7,7 +7,6 @@
         body { margin: 0; background: black; }
         video { width: 100%; height: 100vh; }
         .status { position: fixed; bottom: 20px; left: 20px; color: white; background: rgba(0,0,0,0.7); padding: 10px; font-family: monospace; font-size: 14px; border-radius: 5px; z-index: 999; }
-        .error { color: #ff6666; }
     </style>
 </head>
 <body>
@@ -15,20 +14,17 @@
     <div class="status" id="status">Loading...</div>
 
     <script>
-        // ========== YOUR VALUES ==========
         const MPD_URL = "https://ottec.cache.av.dn.net/bom-nitro/live/clients/dash/enc/pnu10tp36z/out/v1/912a9db56d75403b8a9ac0a719110f36/cenc.mp4";
         
         const CLEAR_KEYS = {
             "192b1115da041585c77200128549efa1": "634e10efe4abb14be400a3ccbac02580"
         };
-        // =================================
         
         const video = document.getElementById('video');
         const statusDiv = document.getElementById('status');
         
-        function updateStatus(msg, isError = false) {
+        function updateStatus(msg) {
             statusDiv.innerHTML = msg;
-            statusDiv.style.color = isError ? '#ff6666' : 'white';
             console.log(msg);
         }
         
@@ -36,7 +32,7 @@
         
         const player = dashjs.MediaPlayer().create();
         
-        // THIS IS THE CRITICAL PART - Setup DRM with clear keys
+        // Setup DRM
         updateStatus("Setting up Clear Key DRM...");
         player.setProtectionData({
             "clearkey": {
@@ -46,28 +42,16 @@
         
         // Error handling
         player.on(dashjs.MediaPlayer.events.ERROR, function(e) {
-            let errorMsg = "Unknown error";
-            if (e.error) {
-                if (e.error.message) errorMsg = e.error.message;
-                else if (typeof e.error === 'string') errorMsg = e.error;
-                else errorMsg = JSON.stringify(e.error);
-            }
-            updateStatus("ERROR: " + errorMsg, true);
-            console.error("Full error:", e);
+            updateStatus("ERROR: " + JSON.stringify(e.error));
+            console.error(e);
         });
         
         // Success
         player.on(dashjs.MediaPlayer.events.CAN_PLAY, function() {
-            updateStatus("✅ PLAYING");
+            updateStatus("PLAYING");
         });
         
-        // Buffering
-        player.on(dashjs.MediaPlayer.events.PLAYBACK_STALLED, function() {
-            updateStatus("⏳ Buffering...");
-        });
-        
-        // Start playback
-        updateStatus("Loading stream...");
+        // Start
         player.initialize(video, MPD_URL, true);
     </script>
 </body>
