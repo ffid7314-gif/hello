@@ -1,13 +1,13 @@
 {
   "iframes": [
     {
-      "id": "csstream1",
-      "name": "CS Stream 1",
+      "id": "sky",
+      "name": "sky cricket",
       "type": "iframe",
       "iframeSrc": "https://1freecdn.xyz/hembedplayer/csstream1/1/960/540?autoplay=1"
     },
     {
-      "id": "starhindi",
+      "id": "ssh1",
       "name": "Star Hindi",
       "type": "iframe",
       "iframeSrc": "https://calm-sun-04d5.rojoni9589.workers.dev/indexind?dtv=https://crichd1.teachub.workers.dev/?v=starhindi"
