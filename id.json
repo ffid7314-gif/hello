@@ -13,6 +13,12 @@
       "iframeSrc": "https://calm-sun-04d5.rojoni9589.workers.dev/indexind?dtv=https://crichd1.teachub.workers.dev/?v=starhindi"
     },
     {
+      "id": "TNT1",
+      "name": "TNT SPORTS 1",
+      "type": "iframe",
+      "iframeSrc": "https://yonotv-now.pages.dev/tnt1"
+    },
+    {
       "id": "CBS",
       "name": "CBS SPORTS",
       "type": "iframe",
