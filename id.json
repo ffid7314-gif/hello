@@ -11,7 +11,7 @@
       "name": "Star Hindi",
       "type": "iframe",
       "iframeSrc": "https://calm-sun-04d5.rojoni9589.workers.dev/indexind?dtv=https://crichd1.teachub.workers.dev/?v=starhindi"
-    }
+    },  // ✅ Added comma here
     {
       "id": "TNT2",
       "name": "TNT SPORTS 2",
