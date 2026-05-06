@@ -17,12 +17,6 @@
       "name": "TNT SPORTS 2",
       "type": "iframe",
       "iframeSrc": "https://teamrotnt2-416.pages.dev/TNT2"
-    },
-    {
-      "id": "SST1",
-      "name": "SONY SPORTS TEN 1",
-      "type": "iframe",
-      "iframeSrc": "https://tv.eplayhd.com/player/in-ten-1-4k?p=0&id=98861"
     }
   ]
 }
