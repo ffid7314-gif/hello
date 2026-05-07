@@ -1,14 +1,14 @@
 {
   "iframes": [
     {
-      "id": "sky",
-      "name": "sky cricket",
+      "id": "SKY",
+      "name": "SKY CRICKET",
       "type": "iframe",
       "iframeSrc": "https://1freecdn.xyz/hembedplayer/csstream1/1/960/540?autoplay=1"
     },
     {
-      "id": "ssh1",
-      "name": "Star Hindi",
+      "id": "SSH1",
+      "name": "STAR SPORTS HINDI 1",
       "type": "iframe",
       "iframeSrc": "https://calm-sun-04d5.rojoni9589.workers.dev/indexind?dtv=https://crichd1.teachub.workers.dev/?v=starhindi"
     },
@@ -23,6 +23,12 @@
       "name": "CBS SPORTS",
       "type": "iframe",
       "iframeSrc": "https://storage.googleapis.com/qtyngheroverbrix1/mux_video_ts/index-1.m3u8"
+    },
+    {
+      "id": "FC",
+      "name": "FANCODE",
+      "type": "iframe",
+      "iframeSrc": "https://freeplyrr.pages.dev/fc"
     },
     {
       "id": "TNT2",
