@@ -1,5 +1,9 @@
 {
+  "scripts": {
+    "build": "npm run obfuscate",
+    "obfuscate": "npx javascript-obfuscator Player.js --output Player.js --compact true"
+  },
   "devDependencies": {
-    "javascript-obfuscator": "^4.1.1"
+    "javascript-obfuscator": "^4.1.0"
   }
 }
