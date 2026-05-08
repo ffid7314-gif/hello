@@ -269,25 +269,6 @@
                 padding: 6px 12px;
             }
         }
-        
-        /* Fallback error state for player */
-        .video-error-placeholder {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: #121826;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-family: monospace;
-            z-index: 5;
-            text-align: center;
-            padding: 20px;
-        }
     </style>
 </head>
 <body>
@@ -515,211 +496,34 @@
         }
     </style>
 
-    <!-- player.js integrated: full functionality of external script but embedded to ensure compactness -->
+    <!-- Core player initialization script (kept minimal for external script loading) -->
     <script>
-        /**
-         * player.js - Enhanced video player with smart loading, quality handling and error fallback
-         * Fully integrated to replace external script.
-         * Provides advanced channel resolution, auto-retry, and robust iframe handling.
-         */
         (function() {
-            console.log('🎬 player.js active | Compact header with reduced spacing and high reliability');
-            
-            // DOM elements
-            const videoIframe = document.getElementById('videoPlayer');
-            const videoContainer = document.getElementById('videoContainer');
-            const channelNameSpan = document.getElementById('channelNameDisplay');
-            const channelBadgeSpan = document.getElementById('channelBadge');
-            const channelHeaderDiv = document.getElementById('channelHeader');
-            const channelMetaWrapper = document.getElementById('channelMetaWrapper');
-            const urlParams = new URLSearchParams(window.location.search);
-            const channelId = urlParams.get('id');
-            
-            // Configuration
-            const CHANNELS_JSON_URL = 'https://raw.githubusercontent.com/ffid7314-gif/hello/main/id.json';
-            let currentIframeSrc = '';
-            let retryCount = 0;
-            const MAX_RETRIES = 1;
-            
-            // Helper: format channel name from ID or JSON name
-            function formatChannelName(rawId, fromJsonName = null) {
-                if (fromJsonName && fromJsonName.trim()) {
-                    return fromJsonName.trim();
-                }
-                if (!rawId) return null;
-                let formatted = rawId.replace(/[_-]/g, ' ').toLowerCase();
-                formatted = formatted.replace(/\b\w/g, c => c.toUpperCase());
-                return formatted;
-            }
-            
-            // Show/hide main channel header
-            function setChannelHeaderVisibility(show) {
-                if (!channelHeaderDiv) return;
-                if (show) {
-                    channelHeaderDiv.classList.add('active-header');
-                } else {
-                    channelHeaderDiv.classList.remove('active-header');
-                }
-            }
-            
-            // Update name + optional quality/lang badge
-            function updateChannelHeader(channelName, additionalInfo = null) {
-                if (!channelName) {
-                    setChannelHeaderVisibility(false);
-                    return;
-                }
-                if (channelNameSpan) channelNameSpan.textContent = channelName;
-                if (channelBadgeSpan && channelMetaWrapper) {
-                    if (additionalInfo && additionalInfo !== '') {
-                        channelBadgeSpan.textContent = additionalInfo;
-                        channelMetaWrapper.style.display = 'block';
-                    } else {
-                        channelMetaWrapper.style.display = 'none';
-                    }
-                }
-                setChannelHeaderVisibility(true);
-            }
-            
-            // Display enhanced error overlay inside video container if source fails
-            function showPlayerError(message) {
-                if (!videoContainer) return;
-                // Avoid duplicate error overlays
-                const existingError = videoContainer.querySelector('.video-error-placeholder');
-                if (existingError) return;
-                const errorDiv = document.createElement('div');
-                errorDiv.className = 'video-error-placeholder';
-                errorDiv.innerHTML = `
-                    <i class="fas fa-exclamation-triangle" style="font-size: 2rem; margin-bottom: 16px; color: #ff8c42;"></i>
-                    <strong style="font-size: 1rem; margin-bottom: 8px;">⚠️ Stream Unavailable</strong>
-                    <span style="font-size: 0.8rem; opacity: 0.8;">${message || 'Could not load video source. Please try again later.'}</span>
-                    <button id="retryStreamBtn" style="margin-top: 16px; background: #2aabee; border: none; padding: 8px 18px; border-radius: 40px; color: white; font-weight: bold; cursor: pointer;">Retry</button>
-                `;
-                videoContainer.style.position = 'relative';
-                videoContainer.appendChild(errorDiv);
-                const retryBtn = errorDiv.querySelector('#retryStreamBtn');
-                if (retryBtn) {
-                    retryBtn.addEventListener('click', () => {
-                        if (currentIframeSrc && videoIframe) {
-                            videoIframe.src = currentIframeSrc;
-                        }
-                        errorDiv.remove();
-                    });
-                }
-            }
-            
-            function clearErrorOverlay() {
-                if (!videoContainer) return;
-                const err = videoContainer.querySelector('.video-error-placeholder');
-                if (err) err.remove();
-            }
-            
-            // Core: load video src into iframe
-            function loadVideoSource(srcUrl) {
-                if (!videoIframe) return false;
-                if (!srcUrl) return false;
-                clearErrorOverlay();
-                currentIframeSrc = srcUrl;
-                videoIframe.src = srcUrl;
-                // Additional safety: if iframe fails to load, attempt to show fallback after timeout
-                const loadTimeout = setTimeout(() => {
-                    if (videoIframe && (!videoIframe.src || videoIframe.src === 'about:blank')) {
-                        showPlayerError('Stream loading timeout. Check connection.');
-                    }
-                }, 8000);
-                videoIframe.addEventListener('load', () => {
-                    clearTimeout(loadTimeout);
-                }, { once: true });
-                return true;
-            }
-            
-            // Fetch remote channel data and resolve source
-            async function resolveAndPlayChannel() {
-                if (!channelId) {
-                    setChannelHeaderVisibility(false);
-                    console.log('ℹ️ No ?id parameter – player waiting for channel selection');
-                    return;
-                }
-                
-                try {
-                    const response = await fetch(CHANNELS_JSON_URL, {
-                        method: 'GET',
-                        headers: { 'Accept': 'application/json' }
-                    });
-                    if (!response.ok) throw new Error(`HTTP ${response.status}`);
-                    const data = await response.json();
-                    
-                    let channelsList = null;
-                    if (Array.isArray(data)) channelsList = data;
-                    else if (data.iframes && Array.isArray(data.iframes)) channelsList = data.iframes;
-                    else if (data.channels && Array.isArray(data.channels)) channelsList = data.channels;
-                    else {
-                        const possibleArray = Object.values(data).find(val => Array.isArray(val));
-                        if (possibleArray) channelsList = possibleArray;
-                    }
-                    
-                    if (channelsList && channelsList.length) {
-                        const matched = channelsList.find(ch => 
-                            ch.id && ch.id.toLowerCase() === channelId.toLowerCase()
-                        );
-                        if (matched) {
-                            const srcUrl = matched.iframeSrc || matched.src || matched.url;
-                            if (srcUrl) {
-                                loadVideoSource(srcUrl);
-                                console.log(`✅ Player loaded: ${matched.name || matched.id}`);
-                            } else {
-                                showPlayerError('No stream URL found for this channel.');
-                            }
-                            // setup header info
-                            let displayName = matched.name ? formatChannelName(channelId, matched.name) : formatChannelName(channelId);
-                            let badgeText = '';
-                            if (matched.quality) badgeText = matched.quality;
-                            else if (matched.lang && !matched.category) badgeText = matched.lang;
-                            updateChannelHeader(displayName, badgeText);
-                            return;
-                        }
-                    }
-                    // no matched channel -> fallback header only (no video source)
-                    const fallbackName = formatChannelName(channelId);
-                    if (fallbackName) updateChannelHeader(fallbackName, '');
-                    else setChannelHeaderVisibility(false);
-                    showPlayerError(`Channel "${channelId}" not found in playlist.`);
-                    
-                } catch (fetchErr) {
-                    console.error('Error fetching channel manifest:', fetchErr);
-                    const fallbackName = formatChannelName(channelId);
-                    if (fallbackName) updateChannelHeader(fallbackName, '');
-                    else setChannelHeaderVisibility(false);
-                    showPlayerError('Failed to load stream data. Network error?');
-                }
-            }
-            
-            // additional safety: scroll to top on initial load
+            // Force scroll to top
             window.scrollTo(0, 0);
             document.documentElement.scrollTop = 0;
             document.body.scrollTop = 0;
-            if (history.scrollRestoration) history.scrollRestoration = 'manual';
+            
+            if (history.scrollRestoration) {
+                history.scrollRestoration = 'manual';
+            }
+            
             setTimeout(() => {
                 window.scrollTo(0, 0);
+                document.documentElement.scrollTop = 0;
+                document.body.scrollTop = 0;
             }, 10);
             
-            // init player
-            resolveAndPlayChannel();
-            
-            // optional: listen to iframe errors (not cross-origin friendly but attempt)
-            if (videoIframe) {
-                videoIframe.addEventListener('error', () => {
-                    if (!videoContainer.querySelector('.video-error-placeholder')) {
-                        showPlayerError('Video failed to load. Tap retry or refresh.');
-                    }
-                });
-            }
+            console.log('🎬 Player page ready | External player.js will be loaded');
         })();
     </script>
     
-    <!-- Telegram Popup core script (standalone but integrated) -->
+    <!-- EXTERNAL PLAYER.JS SCRIPT (as requested) -->
+    <script src="player.js"></script>
+    
+    <!-- Telegram Popup logic -->
     <script>
         (function() {
-            // Telegram popup logic (from original)
             const popupOverlay = document.getElementById('telegramPopup');
             const joinBtn = document.getElementById('telegramJoinBtn');
             const alreadyJoinedBtn = document.getElementById('alreadyJoinedBtn');
@@ -737,7 +541,6 @@
                 }
             }
             
-            // 1 second delay before showing popup (non-intrusive but engaging)
             setTimeout(() => {
                 showPopup();
             }, 1000);
@@ -763,11 +566,6 @@
                 popupOverlay.addEventListener('click', (e) => {
                     if (e.target === popupOverlay) hidePopup();
                 });
-                popupOverlay.addEventListener('touchmove', (e) => {
-                    if (popupOverlay.classList.contains('active') && e.target === popupOverlay) {
-                        e.preventDefault();
-                    }
-                }, { passive: false });
             }
         })();
     </script>
