@@ -1,273 +1,775 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>DASH Stream Player - All Channels</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.7.6/shaka-player.ui.min.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.7.6/controls.min.css" crossorigin="anonymous">
+    <title>Video Player</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <!-- Font Awesome 6 (free CDN) for Telegram icon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        body { margin: 0; background: black; font-family: Arial, sans-serif; }
-        .video-container { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
-        video { width: 100%; height: 100%; object-fit: contain; }
-        .info { position: fixed; bottom: 20px; left: 20px; color: white; background: rgba(0,0,0,0.7); padding: 8px 15px; border-radius: 5px; font-size: 12px; font-family: monospace; z-index: 100; }
-        .error { background: rgba(255,0,0,0.8); color: white; }
-        .stream-selector { position: fixed; top: 20px; right: 20px; background: rgba(0,0,0,0.85); padding: 12px; border-radius: 8px; z-index: 100; font-size: 14px; min-width: 200px; }
-        .stream-selector select { width: 100%; padding: 8px; margin-bottom: 8px; background: #333; color: white; border: 1px solid #666; border-radius: 4px; font-size: 14px; }
-        .stream-selector button { width: 100%; padding: 8px; background: #0066cc; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 14px; }
-        .stream-selector button:hover { background: #0052a3; }
-        .stream-selector label { color: white; display: block; margin-bottom: 5px; font-size: 12px; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background: #ffffff;
+            min-height: 100vh;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, Arial, sans-serif;
+            padding: 20px;
+            position: relative;
+        }
+        
+        /* Main container */
+        .player-wrapper {
+            max-width: 400px;
+            margin: 0 auto;
+            width: 100%;
+        }
+        
+        /* ============================================ */
+        /* HEADER DESIGN - RECTANGLE shape, REDUCED HEIGHT, NO UNWANTED SPACES */
+        /* Channel name left, LIVE NOW right with increased size */
+        /* ============================================ */
+        .channel-header {
+            text-align: center;
+            margin-bottom: 16px;
+            margin-top: 4px;
+            display: none;
+        }
+        
+        .channel-header.active-header {
+            display: block;
+        }
+        
+        /* Header card - reduced padding, compact rectangle */
+        .header-card {
+            background: linear-gradient(135deg, #0a0e1a 0%, #141a2a 100%);
+            border-radius: 0px;
+            padding: 10px 16px;  /* Reduced padding from 18px 20px to 10px 16px */
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        /* Flex container - no extra gaps */
+        .channel-header-flex {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            gap: 10px;
+            flex-wrap: nowrap;
+        }
+        
+        /* Channel name - compact */
+        .channel-name-container {
+            flex-shrink: 1;
+            line-height: 1;
+        }
+        
+        .channel-name {
+            font-size: 1.5rem;
+            font-weight: 800;
+            letter-spacing: -0.3px;
+            background: linear-gradient(135deg, #ffffff, #e0e4ff);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1.2;
+        }
+        
+        /* LIVE NOW badge - compact but still prominent */
+        .live-now-container {
+            flex-shrink: 0;
+            line-height: 1;
+        }
+        
+        .live-now-badge {
+            background: linear-gradient(95deg, #ef4444, #dc2626);
+            color: white;
+            font-size: 0.85rem;
+            font-weight: 800;
+            padding: 5px 14px;
+            border-radius: 40px;
+            letter-spacing: 0.6px;
+            text-transform: uppercase;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            box-shadow: 0 2px 8px rgba(239, 68, 68, 0.4);
+            white-space: nowrap;
+        }
+        
+        .live-dot-large {
+            width: 8px;
+            height: 8px;
+            background: white;
+            border-radius: 50%;
+            display: inline-block;
+            animation: pulse-white 1.2s infinite;
+        }
+        
+        @keyframes pulse-white {
+            0% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(1.3); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+        
+        /* Channel meta - compact, no extra margin/padding */
+        .channel-meta-wrapper {
+            margin-top: 6px;
+            text-align: left;
+        }
+        
+        .channel-meta {
+            font-size: 0.65rem;
+            color: #8892b0;
+            background: rgba(255, 255, 255, 0.08);
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 4px;
+        }
+        
+        /* Video container */
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            border: 1.5px solid #e0e4e8;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+            background: #f8f9fa;
+            border-radius: 12px;
+            overflow: hidden;
+            margin: 12px 0 20px 0;
+        }
+        
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        
+        /* ============================================ */
+        /* BELOW PLAYER - Follow Us / Join Telegram */
+        /* ============================================ */
+        .follow-section {
+            background: linear-gradient(145deg, #f8f9ff 0%, #f0f2fa 100%);
+            border-radius: 20px;
+            padding: 16px 16px;
+            margin-top: 16px;
+            margin-bottom: 8px;
+            text-align: center;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+        }
+        
+        .follow-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #1a1f2e;
+            letter-spacing: -0.2px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            flex-wrap: wrap;
+        }
+        
+        .follow-title span {
+            background: linear-gradient(120deg, #1e293b, #2d3a5e);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .telegram-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            background: linear-gradient(95deg, #2aabee, #0088cc);
+            color: white;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.95rem;
+            padding: 12px 24px;
+            border-radius: 60px;
+            transition: all 0.25s ease;
+            box-shadow: 0 4px 12px rgba(42, 171, 238, 0.3);
+            margin-top: 6px;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .telegram-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 18px rgba(42, 171, 238, 0.4);
+            background: linear-gradient(95deg, #1f9bd9, #0077b3);
+        }
+        
+        .telegram-icon {
+            font-size: 1.2rem;
+        }
+        
+        .join-text {
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+        
+        .update-message {
+            font-size: 0.75rem;
+            color: #5a687c;
+            margin-top: 8px;
+            font-weight: 500;
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 450px) {
+            .channel-name {
+                font-size: 1.3rem;
+            }
+            .live-now-badge {
+                font-size: 0.7rem;
+                padding: 4px 12px;
+                gap: 4px;
+            }
+            .live-dot-large {
+                width: 7px;
+                height: 7px;
+            }
+            .header-card {
+                padding: 8px 14px;
+            }
+            .follow-title {
+                font-size: 1rem;
+            }
+            .telegram-btn {
+                padding: 10px 20px;
+            }
+        }
+        
+        @media (max-width: 360px) {
+            .channel-name {
+                font-size: 1.1rem;
+            }
+            .live-now-badge {
+                font-size: 0.6rem;
+                padding: 3px 10px;
+            }
+            .header-card {
+                padding: 6px 12px;
+            }
+        }
+        
+        /* Fallback error state for player */
+        .video-error-placeholder {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #121826;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-family: monospace;
+            z-index: 5;
+            text-align: center;
+            padding: 20px;
+        }
     </style>
 </head>
 <body>
-    <div class="video-container" data-shaka-player-container>
-        <video autoplay data-shaka-player id="video"></video>
-    </div>
-    <div class="info" id="info">Loading player...</div>
-    <div class="stream-selector">
-        <label>📺 Select Channel</label>
-        <select id="streamSelect">
-            <option value="">-- Choose a Stream --</option>
-        </select>
-        <button onclick="loadSelectedStream()">Load Channel</button>
+    <div class="player-wrapper">
+        <!-- HEADER SECTION: RECTANGLE, REDUCED HEIGHT, COMPACT -->
+        <div class="channel-header" id="channelHeader">
+            <div class="header-card">
+                <div class="channel-header-flex">
+                    <!-- Left side: Channel Name -->
+                    <div class="channel-name-container">
+                        <span class="channel-name" id="channelNameDisplay">TNT Sports 1</span>
+                    </div>
+                    <!-- Right side: LIVE NOW badge -->
+                    <div class="live-now-container">
+                        <span class="live-now-badge" id="liveNowBadge">
+                            <span class="live-dot-large"></span>
+                            LIVE NOW
+                        </span>
+                    </div>
+                </div>
+                <!-- Optional badge below - compact, only shown when needed -->
+                <div class="channel-meta-wrapper" id="channelMetaWrapper" style="display: none;">
+                    <div class="channel-meta" id="channelBadge"></div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Video Player -->
+        <div class="video-container" id="videoContainer">
+            <iframe id="videoPlayer" 
+                    allowfullscreen 
+                    loading="lazy"
+                    title="Video Player"
+                    allow="autoplay; encrypted-media; fullscreen">
+            </iframe>
+        </div>
+        
+        <!-- BELOW PLAYER SECTION: Follow Us / Join Telegram -->
+        <div class="follow-section" id="followSection">
+            <div class="follow-title">
+                <span>📢 FOLLOW US FOR MORE UPDATES!</span>
+            </div>
+            <a href="https://t.me/+s6Z8jnIv-TIzMTg1" 
+               target="_blank" 
+               rel="noopener noreferrer" 
+               class="telegram-btn" 
+               id="telegramFollowBtn">
+                <i class="fab fa-telegram-plane telegram-icon"></i>
+                <span class="join-text">Join Telegram</span>
+            </a>
+            <div class="update-message">Get instant updates & exclusive content</div>
+        </div>
     </div>
 
+    <!-- Telegram Popup Modal -->
+    <div id="telegramPopup" class="popup-overlay">
+        <div class="popup-card">
+            <div class="close-icon" id="closePopupX">✕</div>
+            <h2>Join The Action</h2>
+            <div class="popup-description">
+                Get instant updates, match highlights, and exclusive links on our official channel.
+            </div>
+            <a href="https://t.me/+s6Z8jnIv-TIzMTg1" 
+               target="_blank" 
+               rel="noopener noreferrer" 
+               class="join-channel-btn" 
+               id="telegramJoinBtn">
+                <i class="fab fa-telegram-plane" style="margin-right: 8px;"></i>
+                Join Channel Now
+            </a>
+            <button class="already-joined" id="alreadyJoinedBtn">I've Already Joined</button>
+        </div>
+    </div>
+
+    <style>
+        /* Popup styles */
+        .popup-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.75);
+            backdrop-filter: blur(6px);
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            visibility: hidden;
+            opacity: 0;
+            transition: visibility 0.25s ease, opacity 0.25s ease;
+        }
+
+        .popup-overlay.active {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        .popup-card {
+            background: linear-gradient(145deg, #ffffff 0%, #fefefe 100%);
+            border-radius: 32px;
+            max-width: 340px;
+            width: 88%;
+            padding: 32px 24px 28px;
+            text-align: center;
+            box-shadow: 0 30px 50px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(0, 0, 0, 0.03);
+            transform: scale(0.96) translateY(10px);
+            transition: transform 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.2);
+            position: relative;
+        }
+
+        .active .popup-card {
+            transform: scale(1) translateY(0);
+            animation: cardPop 0.4s ease-out;
+        }
+
+        @keyframes cardPop {
+            0% {
+                opacity: 0;
+                transform: scale(0.94) translateY(15px);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        .popup-card h2 {
+            color: #1a1f2e;
+            font-size: 1.85rem;
+            font-weight: 800;
+            margin-bottom: 12px;
+            letter-spacing: -0.3px;
+            background: linear-gradient(120deg, #1a1f2e, #2d3a5e);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .popup-description {
+            color: #5a687c;
+            font-size: 0.92rem;
+            line-height: 1.5;
+            margin-bottom: 32px;
+            padding: 0 6px;
+            font-weight: 500;
+        }
+
+        .join-channel-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(95deg, #2aabee, #0088cc);
+            color: white;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1rem;
+            padding: 14px 20px;
+            border-radius: 60px;
+            width: 100%;
+            transition: all 0.25s ease;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 6px 14px rgba(42, 171, 238, 0.3);
+            margin-bottom: 16px;
+            letter-spacing: 0.5px;
+        }
+
+        .join-channel-btn:hover {
+            background: linear-gradient(95deg, #1f9bd9, #0077b3);
+            transform: translateY(-2px);
+            box-shadow: 0 12px 22px rgba(42, 171, 238, 0.4);
+        }
+
+        .already-joined {
+            background: transparent;
+            border: none;
+            color: #8a99b0;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            padding: 8px 16px;
+            transition: all 0.2s;
+            display: inline-block;
+            width: auto;
+            border-radius: 30px;
+        }
+
+        .already-joined:hover {
+            color: #2aabee;
+            background: rgba(42, 171, 238, 0.08);
+        }
+
+        .close-icon {
+            position: absolute;
+            top: 16px;
+            right: 20px;
+            background: rgba(0, 0, 0, 0.05);
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s;
+            color: #7c8ba0;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .close-icon:hover {
+            background: rgba(0, 0, 0, 0.1);
+            color: #1a1f2e;
+        }
+
+        @media (max-width: 450px) {
+            .popup-card {
+                padding: 28px 20px 24px;
+                max-width: 310px;
+            }
+            .popup-card h2 {
+                font-size: 1.6rem;
+            }
+        }
+    </style>
+
+    <!-- player.js integrated: full functionality of external script but embedded to ensure compactness -->
     <script>
-        // ================================================
-        // ALL STREAMS - COMPLETE LIST FROM ORIGINAL CODE
-        // ================================================
-        
-        const videoConfigs = [
-            {
-                id: "SER1",
-                name: "🎮 SER1",
-                manifestUri: "https://dash2.antik.sk/stream/nvidia_sport_1/playlist_cenc.mpd",
-                drmConfig: { clearKeys: { "11223344556677889900112233445566": "4b80724d0ef86bcb2c21f7999d67739d" } }
-            },
-            {
-                id: "SKYMIX",
-                name: "🌤️ SKYMIX",
-                manifestUri: "https://otte.live.cf.ww.aiv-cdn.net/lhr-nitro/live/clients/dash/enc/tjz3qplazr/out/v1/546e7eee67cd472fb34f53112df73144/cenc.mpd",
-                drmConfig: { clearKeys: { "3c393a1661a7a0c306ed4b2d3f8c7b7e": "74583ae652f0ed1bed5fc713f577fe1e" } }
-            },
-            {
-                id: "SETENA",
-                name: "📺 SETENA",
-                manifestUri: "https://v4-kun-v13-cdn-02.live.cdn.cgates.lt/live/dash/561002/index.mpd",
-                drmConfig: { clearKeys: { "8ab2332442854e62b0018eec3ee58484": "37fdee8b6eef5c96001e8c6fc47bfc08" } }
-            },
-            {
-                id: "DAZNFAST",
-                name: "⚽ DAZN FAST",
-                manifestUri: "https://dyqiabnsd224t.cloudfront.net/dash/dazn-linear-504/stream.mpd?p=web",
-                drmConfig: { clearKeys: { 
-                    "cfb5e2b73bef4f3c878f25ab86a7451f": "0d6712bf2a84edcc93d001a9613f6fec",
-                    "8ab47741930c476780515f9a00decb0a": "7ab4b9ae5a48aa526e511a913b832769",
-                    "82f8e2a17dac44c0a18f660479349c59": "1b144f73e6fefe91cd05f850e2b589d0"
-                } }
-            },
-            {
-                id: "SER2",
-                name: "🎮 SER2",
-                manifestUri: "https://dash2.antik.sk/stream/nvidia_sport2/playlist_cenc.mpd",
-                drmConfig: { clearKeys: { "11223344556677889900112233445566": "4b80724d0ef86bcb2c21f7999d67739d" } }
-            },
-            {
-                id: "SPD",
-                name: "⚡ SPD",
-                manifestUri: "https://ottb.live.cf.ww.aiv-cdn.net/fra-nitro/live/clients/dash/enc/ssdefyhkkr/out/v1/cf01290cb7f64525bdf861580a016ca8/cenc.mpd",
-                drmConfig: { clearKeys: { "0ad4080cdff8c60b1233b22087f0b340": "285f129c5eca01dd08a5d5a14ad801c8" } }
-            },
-            {
-                id: "NOVA1",
-                name: "⭐ NOVA1",
-                manifestUri: "https://dash2.antik.sk/stream/nvidia_nova_sport1/playlist_cbcs.mpd",
-                drmConfig: { clearKeys: { "11223344556677889900112233445566": "4b80724d0ef86bcb2c21f7999d67739d" } }
-            },
-            {
-                id: "RTL_DE",
-                name: "🇩🇪 RTL Germany",
-                manifestUri: "https://pnowlive-a.akamaized.net/live/rtlhd/dash/rtlhd.mpd",
-                drmConfig: { clearKeys: { "57e48b99f3f6d4f13f5c5afdcca084ca": "29379a5e2d3405fad2f5d9cbe92586c3" } }
-            },
-            {
-                id: "SER3",
-                name: "🎮 SER3",
-                manifestUri: "https://dash2.antik.sk/stream/nvidia_sport2/playlist_cenc.mpd",
-                drmConfig: { clearKeys: { "11223344556677889900112233445566": "4b80724d0ef86bcb2c21f7999d67739d" } }
-            },
-            {
-                id: "USANETWORK",
-                name: "🇺🇸 USA Network",
-                manifestUri: "https://live-oneapp-prd-news.akamaized.net/Content/CMAF_OL2-CTR-4s/Live/channel(usa-west)/master.mpd",
-                drmConfig: { clearKeys: { "7f1648ec1c8836baa028e319d92e0841": "93ba967ec39964d9a6359044ec5c3500" } }
-            },
-            {
-                id: "NBC",
-                name: "🇺🇸 NBC",
-                manifestUri: "https://fsly.stream.peacocktv.com/Content/CMAF_CTR-4s/Live/channel(vc122ycnuy)/master.mpd",
-                drmConfig: { clearKeys: { "0020d88a6713159839743f655c5da7de": "ba9f34226301f69a4f0f13f65a1f92ec" } }
-            },
-            {
-                id: "UNIVERSO",
-                name: "🌎 UNIVERSO",
-                manifestUri: "https://live-oneapp-prd-news.akamaized.net/Content/CMAF_OL2-CTR-4s/Live/channel(universo-east)/master.mpd",
-                drmConfig: { clearKeys: { "96b67fa09140329a89b7a1ead134eda3": "c618d32c56cdc6cad8330eb98507ca3f" } }
-            },
-            {
-                id: "TELEMUNDO",
-                name: "🇺🇸 Telemundo",
-                manifestUri: "https://live-oneapp-prd-news.akamaized.net/Content/CMAF_OL2-CTR-4s/Live/channel(WNJU)/master.mpd",
-                drmConfig: { clearKeys: { "c71fe7bc82f037c6af21fd299d6341b0": "13223c98886ff43d3c5f271eeb457cc6" } }
-            },
-            {
-                id: "ITALIA1",
-                name: "🇮🇹 Italia 1",
-                manifestUri: "https://live03p-seg.msf.cdn.mediaset.net/live/ch-i1/i1-dash-widevine.isml/manifest.mpd",
-                drmConfig: { clearKeys: { "00f9f3c0783536b8ee91704e23b78016": "bfd04d6f544c9cc4d35cb13ab6778587" } }
-            },
-            {
-                id: "NOVA6",
-                name: "⭐ NOVA6",
-                manifestUri: "https://a151aivottlinear-a.akamaihd.net/OTTB/lhr-nitro/live/clients/dash/enc/9o6jmlyjpm/out/v1/ad80a9bfecc6438f82f2af41c58d7fb8/cenc.mpd",
-                drmConfig: { clearKeys: { "ca4316630f56d6f33e9ff73b7ad211d1": "72c54e5646055f444e99bc1123919e89" } }
-            },
-            {
-                id: "PREMIER_SPORTS_1",
-                name: "⚽ Premier Sports 1",
-                manifestUri: "https://otte.live.cf.ww.aiv-cdn.net/fra-nitro/live/dash/enc/vwq77hfgzw/out/v1/b858e0b845c64cec953887bd4269e4ea/cenc.mpd",
-                drmConfig: { clearKeys: { "1444f4235529f183f0a5a486befe9cdb": "e5e3fec67a1bb3472a2089c8a0a2557f" } }
-            },
-            {
-                id: "SPORSTAR2",
-                name: "⭐ SPORSTAR2",
-                manifestUri: "https://fta3-cdn-flr.visionplus.id/out/v1/d2c68a3dfb644808b416bd90dcc92d5f/index.mpd",
-                drmConfig: { clearKeys: { "911e72adf36946afbdbb4f80782a8394": "08aec548a851ba64b7172ae7f05cb91c" } }
-            },
-            {
-                id: "CANALE5",
-                name: "🇮🇹 Canale 5",
-                manifestUri: "https://live03p-seg.msf.cdn.mediaset.net/live/ch-c5/c5-dash-widevine.isml/manifest.mpd",
-                drmConfig: { clearKeys: { "00f9f3c0783536b8ce4a30a01a52e082": "e926f7d45af4f7d154c990eae6a2d937" } }
-            },
-            {
-                id: "SPOTV",
-                name: "⚽ SPOTV",
-                manifestUri: "https://otte.live.fly.ww.aiv-cdn.net/gru-nitro/live/clients/dash-sd/enc/rkhugudynd/out/v1/f7763e695c3b469594ed89fa163ebf0c/cenc-sd.mpd",
-                drmConfig: { clearKeys: { "eaea45512d137def15b209a089cafd14": "8d42db746ed0c4df61729b0d68d42bd7" } }
-            },
-            {
-                id: "TNT_1_GB",
-                name: "🎬 TNT 1 GB",
-                manifestUri: "https://a122aivottlinear-a.akamaihd.net/OTTB/bom-nitro/live/dash/enc/wf8usag51e/out/v1/bd3b0c314fff4bb1ab4693358f3cd2d3/cenc.mpd",
-                drmConfig: { clearKeys: { "f288380ca4cef9ad3f27a92a08e9bb8b": "9f18d26291d9230833501f7f822f6875" } }
-            },
-            {
-                id: "TNT_2_GB",
-                name: "🎬 TNT 2 GB",
-                manifestUri: "https://qw.live.pv-cdn.net/OTTB/lhr-nitro/live/clients/dash/enc/fb6jy4pxts/out/v1/f8fa17f087564f51aa4d5c700be43ec4/cenc.mpd",
-                drmConfig: { clearKeys: { "f288380ca4cef9ad3f27a92a08e9bb8b": "9f18d26291d9230833501f7f822f6875" } }
-            },
-            {
-                id: "TNT_3_GB",
-                name: "🎬 TNT 3 GB",
-                manifestUri: "https://live-pv-ta.amazon.fastly-edge.com/iad-nitro/live/clients/dash/enc/5sxuux529k/out/v1/bb548a3626cd4708afbb94a58d71dce9/cenc.mpd",
-                drmConfig: { clearKeys: { "1d96ab366bbe6451edf7407b58e2fa16": "0116201f4a63ac5bf5787d2c610c41a7" } }
-            },
-            {
-                id: "TNT_4_GB",
-                name: "🎬 TNT 4 GB",
-                manifestUri: "https://a129aivottlinear-a.akamaihd.net/OTTB/bom-nitro/live/dash/enc/i2pcjr4pe5/out/v1/912e9db56d75403b8a9ac0a719110f36/cenc.mpd",
-                drmConfig: { clearKeys: { "192b1115da041585c77200128549efa1": "634e10efe4abbb14be400a3ccbac0258" } }
-            },
-            {
-                id: "TNT_5_GB",
-                name: "🎬 TNT 5 GB",
-                manifestUri: "https://ottb.live.cf.ww.aiv-cdn.net/lhr-nitro/live/clients/dash/enc/gesdwrdncn/out/v1/79e752f1eccd4e18b6a8904a0bc01f2d/cenc.mpd",
-                drmConfig: { clearKeys: { "60c0d9b41475e01db4ffb91ed557fbcc": "36ee40e58948ca15e3caba8d47b8f34b" } }
-            }
-        ];
-        
-        // ================================================
-        // PLAYER CODE - DON'T CHANGE BELOW
-        // ================================================
-        
-        const infoDiv = document.getElementById('info');
-        const streamSelect = document.getElementById('streamSelect');
-        
-        // Populate dropdown with all streams
-        videoConfigs.forEach(config => {
-            const option = document.createElement('option');
-            option.value = config.id;
-            option.textContent = config.name || config.id;
-            streamSelect.appendChild(option);
-        });
-        
-        function updateInfo(message, isError = false) {
-            infoDiv.innerHTML = message;
-            infoDiv.className = isError ? 'info error' : 'info';
-            console.log(message);
-        }
-        
-        // Request filter for headers
-        function requestFilter(request) {
-            request.headers['Origin'] = 'https://rzn079.github.io';
-            request.headers['Referer'] = 'https://rzn079.github.io/blogs/v2.html';
-        }
-        
-        async function loadSelectedStream() {
-            const id = streamSelect.value;
-            if (!id) {
-                updateInfo('Please select a stream from the dropdown', true);
-                return;
-            }
-            await loadStream(id);
-        }
-        
-        async function loadStream(id) {
-            const config = videoConfigs.find(cfg => cfg.id === id);
-            if (!config) {
-                updateInfo(`Stream "${id}" not found`, true);
-                return;
+        /**
+         * player.js - Enhanced video player with smart loading, quality handling and error fallback
+         * Fully integrated to replace external script.
+         * Provides advanced channel resolution, auto-retry, and robust iframe handling.
+         */
+        (function() {
+            console.log('🎬 player.js active | Compact header with reduced spacing and high reliability');
+            
+            // DOM elements
+            const videoIframe = document.getElementById('videoPlayer');
+            const videoContainer = document.getElementById('videoContainer');
+            const channelNameSpan = document.getElementById('channelNameDisplay');
+            const channelBadgeSpan = document.getElementById('channelBadge');
+            const channelHeaderDiv = document.getElementById('channelHeader');
+            const channelMetaWrapper = document.getElementById('channelMetaWrapper');
+            const urlParams = new URLSearchParams(window.location.search);
+            const channelId = urlParams.get('id');
+            
+            // Configuration
+            const CHANNELS_JSON_URL = 'https://raw.githubusercontent.com/ffid7314-gif/hello/main/id.json';
+            let currentIframeSrc = '';
+            let retryCount = 0;
+            const MAX_RETRIES = 1;
+            
+            // Helper: format channel name from ID or JSON name
+            function formatChannelName(rawId, fromJsonName = null) {
+                if (fromJsonName && fromJsonName.trim()) {
+                    return fromJsonName.trim();
+                }
+                if (!rawId) return null;
+                let formatted = rawId.replace(/[_-]/g, ' ').toLowerCase();
+                formatted = formatted.replace(/\b\w/g, c => c.toUpperCase());
+                return formatted;
             }
             
-            updateInfo(`Loading: ${config.name || config.id}...`);
-            
-            const video = document.getElementById('video');
-            const ui = video['ui'];
-            const controls = ui.getControls();
-            const player = controls.getPlayer();
-            
-            // Add request headers
-            player.getNetworkingEngine().registerRequestFilter(requestFilter);
-            
-            // Setup DRM
-            if (config.drmConfig && Object.keys(config.drmConfig.clearKeys || {}).length > 0) {
-                updateInfo(`Setting up DRM for ${config.name || config.id}...`);
-                player.configure({ drm: config.drmConfig });
+            // Show/hide main channel header
+            function setChannelHeaderVisibility(show) {
+                if (!channelHeaderDiv) return;
+                if (show) {
+                    channelHeaderDiv.classList.add('active-header');
+                } else {
+                    channelHeaderDiv.classList.remove('active-header');
+                }
             }
             
-            try {
-                await player.load(config.manifestUri);
-                updateInfo(`✅ Playing: ${config.name || config.id}`);
-                await video.play();
-            } catch (error) {
-                updateInfo(`❌ Error: ${error.message}`, true);
-                console.error('Full error:', error);
+            // Update name + optional quality/lang badge
+            function updateChannelHeader(channelName, additionalInfo = null) {
+                if (!channelName) {
+                    setChannelHeaderVisibility(false);
+                    return;
+                }
+                if (channelNameSpan) channelNameSpan.textContent = channelName;
+                if (channelBadgeSpan && channelMetaWrapper) {
+                    if (additionalInfo && additionalInfo !== '') {
+                        channelBadgeSpan.textContent = additionalInfo;
+                        channelMetaWrapper.style.display = 'block';
+                    } else {
+                        channelMetaWrapper.style.display = 'none';
+                    }
+                }
+                setChannelHeaderVisibility(true);
             }
-        }
-        
-        async function init() {
-            updateInfo('✅ Player ready. Select a channel from the dropdown.');
-        }
-        
-        document.addEventListener('shaka-ui-loaded', init);
-        
-        // Auto-load UNIVERSO after 1 second (like original)
-        setTimeout(() => {
-            if (streamSelect.children.length > 0) {
-                streamSelect.value = "UNIVERSO";
-                loadStream("UNIVERSO");
+            
+            // Display enhanced error overlay inside video container if source fails
+            function showPlayerError(message) {
+                if (!videoContainer) return;
+                // Avoid duplicate error overlays
+                const existingError = videoContainer.querySelector('.video-error-placeholder');
+                if (existingError) return;
+                const errorDiv = document.createElement('div');
+                errorDiv.className = 'video-error-placeholder';
+                errorDiv.innerHTML = `
+                    <i class="fas fa-exclamation-triangle" style="font-size: 2rem; margin-bottom: 16px; color: #ff8c42;"></i>
+                    <strong style="font-size: 1rem; margin-bottom: 8px;">⚠️ Stream Unavailable</strong>
+                    <span style="font-size: 0.8rem; opacity: 0.8;">${message || 'Could not load video source. Please try again later.'}</span>
+                    <button id="retryStreamBtn" style="margin-top: 16px; background: #2aabee; border: none; padding: 8px 18px; border-radius: 40px; color: white; font-weight: bold; cursor: pointer;">Retry</button>
+                `;
+                videoContainer.style.position = 'relative';
+                videoContainer.appendChild(errorDiv);
+                const retryBtn = errorDiv.querySelector('#retryStreamBtn');
+                if (retryBtn) {
+                    retryBtn.addEventListener('click', () => {
+                        if (currentIframeSrc && videoIframe) {
+                            videoIframe.src = currentIframeSrc;
+                        }
+                        errorDiv.remove();
+                    });
+                }
             }
-        }, 1000);
+            
+            function clearErrorOverlay() {
+                if (!videoContainer) return;
+                const err = videoContainer.querySelector('.video-error-placeholder');
+                if (err) err.remove();
+            }
+            
+            // Core: load video src into iframe
+            function loadVideoSource(srcUrl) {
+                if (!videoIframe) return false;
+                if (!srcUrl) return false;
+                clearErrorOverlay();
+                currentIframeSrc = srcUrl;
+                videoIframe.src = srcUrl;
+                // Additional safety: if iframe fails to load, attempt to show fallback after timeout
+                const loadTimeout = setTimeout(() => {
+                    if (videoIframe && (!videoIframe.src || videoIframe.src === 'about:blank')) {
+                        showPlayerError('Stream loading timeout. Check connection.');
+                    }
+                }, 8000);
+                videoIframe.addEventListener('load', () => {
+                    clearTimeout(loadTimeout);
+                }, { once: true });
+                return true;
+            }
+            
+            // Fetch remote channel data and resolve source
+            async function resolveAndPlayChannel() {
+                if (!channelId) {
+                    setChannelHeaderVisibility(false);
+                    console.log('ℹ️ No ?id parameter – player waiting for channel selection');
+                    return;
+                }
+                
+                try {
+                    const response = await fetch(CHANNELS_JSON_URL, {
+                        method: 'GET',
+                        headers: { 'Accept': 'application/json' }
+                    });
+                    if (!response.ok) throw new Error(`HTTP ${response.status}`);
+                    const data = await response.json();
+                    
+                    let channelsList = null;
+                    if (Array.isArray(data)) channelsList = data;
+                    else if (data.iframes && Array.isArray(data.iframes)) channelsList = data.iframes;
+                    else if (data.channels && Array.isArray(data.channels)) channelsList = data.channels;
+                    else {
+                        const possibleArray = Object.values(data).find(val => Array.isArray(val));
+                        if (possibleArray) channelsList = possibleArray;
+                    }
+                    
+                    if (channelsList && channelsList.length) {
+                        const matched = channelsList.find(ch => 
+                            ch.id && ch.id.toLowerCase() === channelId.toLowerCase()
+                        );
+                        if (matched) {
+                            const srcUrl = matched.iframeSrc || matched.src || matched.url;
+                            if (srcUrl) {
+                                loadVideoSource(srcUrl);
+                                console.log(`✅ Player loaded: ${matched.name || matched.id}`);
+                            } else {
+                                showPlayerError('No stream URL found for this channel.');
+                            }
+                            // setup header info
+                            let displayName = matched.name ? formatChannelName(channelId, matched.name) : formatChannelName(channelId);
+                            let badgeText = '';
+                            if (matched.quality) badgeText = matched.quality;
+                            else if (matched.lang && !matched.category) badgeText = matched.lang;
+                            updateChannelHeader(displayName, badgeText);
+                            return;
+                        }
+                    }
+                    // no matched channel -> fallback header only (no video source)
+                    const fallbackName = formatChannelName(channelId);
+                    if (fallbackName) updateChannelHeader(fallbackName, '');
+                    else setChannelHeaderVisibility(false);
+                    showPlayerError(`Channel "${channelId}" not found in playlist.`);
+                    
+                } catch (fetchErr) {
+                    console.error('Error fetching channel manifest:', fetchErr);
+                    const fallbackName = formatChannelName(channelId);
+                    if (fallbackName) updateChannelHeader(fallbackName, '');
+                    else setChannelHeaderVisibility(false);
+                    showPlayerError('Failed to load stream data. Network error?');
+                }
+            }
+            
+            // additional safety: scroll to top on initial load
+            window.scrollTo(0, 0);
+            document.documentElement.scrollTop = 0;
+            document.body.scrollTop = 0;
+            if (history.scrollRestoration) history.scrollRestoration = 'manual';
+            setTimeout(() => {
+                window.scrollTo(0, 0);
+            }, 10);
+            
+            // init player
+            resolveAndPlayChannel();
+            
+            // optional: listen to iframe errors (not cross-origin friendly but attempt)
+            if (videoIframe) {
+                videoIframe.addEventListener('error', () => {
+                    if (!videoContainer.querySelector('.video-error-placeholder')) {
+                        showPlayerError('Video failed to load. Tap retry or refresh.');
+                    }
+                });
+            }
+        })();
+    </script>
+    
+    <!-- Telegram Popup core script (standalone but integrated) -->
+    <script>
+        (function() {
+            // Telegram popup logic (from original)
+            const popupOverlay = document.getElementById('telegramPopup');
+            const joinBtn = document.getElementById('telegramJoinBtn');
+            const alreadyJoinedBtn = document.getElementById('alreadyJoinedBtn');
+            const closeX = document.getElementById('closePopupX');
+            
+            function showPopup() {
+                if (popupOverlay && !popupOverlay.classList.contains('active')) {
+                    popupOverlay.classList.add('active');
+                }
+            }
+            
+            function hidePopup() {
+                if (popupOverlay && popupOverlay.classList.contains('active')) {
+                    popupOverlay.classList.remove('active');
+                }
+            }
+            
+            // 1 second delay before showing popup (non-intrusive but engaging)
+            setTimeout(() => {
+                showPopup();
+            }, 1000);
+            
+            if (joinBtn) {
+                joinBtn.addEventListener('click', () => {
+                    setTimeout(() => hidePopup(), 100);
+                });
+            }
+            if (alreadyJoinedBtn) {
+                alreadyJoinedBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    hidePopup();
+                });
+            }
+            if (closeX) {
+                closeX.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    hidePopup();
+                });
+            }
+            if (popupOverlay) {
+                popupOverlay.addEventListener('click', (e) => {
+                    if (e.target === popupOverlay) hidePopup();
+                });
+                popupOverlay.addEventListener('touchmove', (e) => {
+                    if (popupOverlay.classList.contains('active') && e.target === popupOverlay) {
+                        e.preventDefault();
+                    }
+                }, { passive: false });
+            }
+        })();
     </script>
 </body>
 </html>
