@@ -12,8 +12,8 @@
   "type": "iframe",
   "iframeSrc": "https://sportsonline.ppvtv.top/embed/hd1",
   "sandbox": "allow-same-origin allow-scripts allow-fullscreen",
-  "allow": "fullscreen",
-  "referrerpolicy": "no-referrer"
+  "referrerpolicy": "no-referrer",
+  "allow": "fullscreen"
 },
     {
       "id": "SSH1",
