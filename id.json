@@ -7,6 +7,13 @@
       "iframeSrc": "https://freeplyrr.pages.dev/plyrr?src=https://api.sportzfy24.com/refer/proxy.php?id=65&#038;ts=https%3A%2F%2Fsalam-de-rasc-87.rtbcdn.ru%2Fdive%2Friver-6-604.rtbcdn.ru%2F2R0ulXfTGDdD7t4CB_MmsA%2Fstream%2Fgenetta-302.m9.rutube.ru%2FknUwQPE"
     },
     {
+  "id": "WTV1",
+  "name": "WILLOW TV",
+  "type": "iframe",
+  "iframeSrc": "https://allrounder-live7.pages.dev/channel/willow",
+  "sandbox": "allow-same-origin allow-scripts allow-popups allow-forms allow-modals"
+    },
+    {
       "id": "SSH1",
       "name": "STAR SPORTS HINDI 1",
       "type": "iframe",
