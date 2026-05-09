@@ -8,12 +8,13 @@
     },
     {
   "id": "SKY12",
-  "name": "SKY SPORTS MAIN",
+  "name": "SKY SPORTS",
   "type": "iframe",
   "iframeSrc": "https://sportsonline.ppvtv.top/embed/hd1",
   "sandbox": "allow-same-origin allow-scripts allow-fullscreen",
-  "allow-popups": "false"
-    },
+  "allow": "fullscreen",
+  "referrerpolicy": "no-referrer"
+},
     {
       "id": "SSH1",
       "name": "STAR SPORTS HINDI 1",
