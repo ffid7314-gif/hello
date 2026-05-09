@@ -7,6 +7,13 @@
       "iframeSrc": "https://freeplyrr.pages.dev/plyrr?src=https://api.sportzfy24.com/refer/proxy.php?id=65&#038;ts=https%3A%2F%2Fsalam-de-rasc-87.rtbcdn.ru%2Fdive%2Friver-6-604.rtbcdn.ru%2F2R0ulXfTGDdD7t4CB_MmsA%2Fstream%2Fgenetta-302.m9.rutube.ru%2FknUwQPE"
     },
     {
+  "id": "FB1",
+  "name": "FOOTBALL LIVE",
+  "type": "iframe",
+  "iframeSrc": " https://livecdn-bp-livestream.rumsport7.live/stream/18/chunks.m3u8?is_vip=false&token=7fa3ff3eb262b1b9e6cf7dfa6e1d4291f627f887&x-sign=da5813687887fe826c08c0b5e82dc4bf&x-time=1778347860",
+  "sandbox": "allow-same-origin allow-scripts allow-fullscreen"
+    },
+    {
   "id": "CBS",
   "name": "CBS SPORTS",
   "type": "iframe",
