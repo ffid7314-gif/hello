@@ -7,14 +7,13 @@
       "iframeSrc": "https://freeplyrr.pages.dev/plyrr?src=https://api.sportzfy24.com/refer/proxy.php?id=65&#038;ts=https%3A%2F%2Fsalam-de-rasc-87.rtbcdn.ru%2Fdive%2Friver-6-604.rtbcdn.ru%2F2R0ulXfTGDdD7t4CB_MmsA%2Fstream%2Fgenetta-302.m9.rutube.ru%2FknUwQPE"
     },
     {
-  "id": "SKYMAIN",
+  "id": "SKY2",
   "name": "SKY SPORTS MAIN",
   "type": "iframe",
   "iframeSrc": "https://sportsonline.ppvtv.top/embed/hd1",
   "sandbox": "allow-same-origin allow-scripts allow-fullscreen",
-  "allow": "fullscreen",
-  "referrerpolicy": "no-referrer"
-},
+  "allow-popups": "false"
+    },
     {
       "id": "SSH1",
       "name": "STAR SPORTS HINDI 1",
