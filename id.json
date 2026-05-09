@@ -74,6 +74,15 @@
       "iframeSrc": "https://freeplyrr.pages.dev/fc"
     },
     {
+  "id": "TNT11",
+  "name": "TNT SPORTS 1",
+  "type": "iframe",
+  "iframeSrc": "https://sportsonline.ppvtv.top/embed/hd1",
+  "sandbox": "allow-same-origin allow-scripts allow-fullscreen",
+  "allowFullscreen": true,
+  "style": "width:100%; height:100%; border:none"
+    },
+    {
       "id": "TNT2",
       "name": "TNT SPORTS 2",
       "type": "iframe",
