@@ -59,7 +59,7 @@
       "id": "FC1",
       "name": "FANCODE LIVE",
       "type": "iframe",
-      "iframeSrc": "https%3A%2F%2Ftcfbrravdlgqrymqfcgu.supabase.co%2Ffunctions%2Fv1%2Fstream-proxy%3Furl%3Dhttps%253A%252F%252Fallinonereborn.online%252Ffctest%252Fplaylists%252Fmatch_142160%252Fenglish.m3u8"
+      "iframeSrc": "https://tcfbrravdlgqrymqfcgu.supabase.co/functions/v1/stream-proxy?url=https://allinonereborn.online/fctest/playlists/match_142160/english.m3u8"
     },
     {
       "id": "FC",
