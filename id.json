@@ -34,7 +34,7 @@
       "id": "SKY1",
       "name": "SKY CRICKET",
       "type": "iframe",
-      "iframeSrc": "https://calm-sun-04d5.rojoni9589.workers.dev/indexind?dtv=https://crichd1.teachub.workers.dev/?v=cric"
+      "iframeSrc":"https://calm-sun-04d5.rojoni9589.workers.dev/indexind?dtv=https://crichd1.teachub.workers.dev/?v=cric"
     },
 {
       "id": "TUDN",
@@ -65,7 +65,7 @@
       "id": "SKY8",
       "name": "SKY SPORTS",
       "type": "iframe",
-      "iframeSrc": "https://storage.googleapis.com/unicertyngher1/mux_video_ts/index-1.m3u8"
+      "iframeSrc":"https://storage.googleapis.com/unicertyngher1/mux_video_ts/index-1.m3u8"
     },
     {
       "id": "FC",
