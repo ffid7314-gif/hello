@@ -1,115 +1,17 @@
 {
   "iframes": [
     {
-      "id": "SKY",
-      "name": "SKY CRICKET",
-      "type": "iframe",
-      "iframeSrc": "https://freeplyrr.pages.dev/plyrr?src=https://api.sportzfy24.com/refer/proxy.php?id=65&#038;ts=https%3A%2F%2Fsalam-de-rasc-87.rtbcdn.ru%2Fdive%2Friver-6-604.rtbcdn.ru%2F2R0ulXfTGDdD7t4CB_MmsA%2Fstream%2Fgenetta-302.m9.rutube.ru%2FknUwQPE"
-    },
-    {
-      "id": "PS1",
-      "name": "PREMIER SPORTS 1",
-      "type": "iframe",
-      "iframeSrc": "https://essss-mmpd.blogspot.com/2026/03/ttt.html?mpd=https://otte.live.fly.ww.aiv-cdn.net/gru-nitro/live/clients/dash/enc/m6sqanvm2m/out/v1/f6beb46c6e9a4132ad739f3ca27df6aa/cenc.mpd&kid=1444f4235529f183f0a5a486befe9cdb&key=e5e3fec67a1bb3472a2089c8a0a2557f&m=1"
-    },
-     {
-      "id": "LTV",
-      "name": "LA LIGA TV",
-      "type": "iframe",
-      "iframeSrc": "https://rzn079.github.io/blogs/v2.html?id=DAZN-LALIGA"
-    },
-     {
-      "id": "STAR",
-      "name": "STAR ENGLISH",
-      "type": "iframe",
-      "iframeSrc": "https://taimoor.pro.bd/mainlight/httpsxstream.php?id=373207"
-    },
-    {
-      "id": "wtv2",
-      "name": "WILLOW CRICKET",
-      "type": "iframe",
-      "iframeSrc": "https://yonotv.pages.dev/wtv"
-    },
-    {
-  "id": "FB1",
-  "name": "FOOTBALL LIVE",
-  "type": "iframe",
-  "iframeSrc": " https://livecdn-bp-livestream.rumsport7.live/stream/18/chunks.m3u8?is_vip=false&token=7fa3ff3eb262b1b9e6cf7dfa6e1d4291f627f887&x-sign=da5813687887fe826c08c0b5e82dc4bf&x-time=1778347860",
-  "sandbox": "allow-same-origin allow-scripts allow-fullscreen"
-    },
-    {
-  "id": "CBS",
-  "name": "CBS SPORTS",
-  "type": "iframe",
-  "iframeSrc": "https://livecdn-bp-livestream.rumsport7.live/stream/7/chunks.m3u8?is_vip=false&token=22ff098ba179627a93cf61e7b4bfd31111f8c3f3&x-sign=b84741625d7d40234f74ae1e4dcc22f5&x-time=1778346960",
-  "sandbox": "allow-same-origin allow-scripts allow-fullscreen"
-    },
-    {
-      "id": "PTV",
-      "name": "PTV SPORTS",
-      "type": "iframe",
-      "iframeSrc": "https://calm-sun-04d5.rojoni9589.workers.dev/indexind?dtv=https://crichd1.teachub.workers.dev/?v=ptvpk"
-    },
-    {
-      "id": "SSH1",
-      "name": "STAR HINDI 1",
-      "type": "iframe",
-      "iframeSrc": "https://calm-sun-04d5.rojoni9589.workers.dev/indexind?dtv=https://crichd1.teachub.workers.dev/?v=starhindi"
-    },
-    {
-      "id": "TNT1",
-      "name": "TNT SPORTS 1",
-      "type": "iframe",
-      "iframeSrc": "https://essss-mmpd.blogspot.com/2026/03/ttt.html?mpd=https://otte.live.fly.ww.aiv-cdn.net/iad-nitro/live/clients/dash/enc/cllekigzzn/out/v1/bd3b0c314fff4bb1ab4693358f3cd2d3/cenc.mpd&keyId=294b5761cefc22d0c6312939e13d8278&key=52148f1042d238849f0a7813f1da8a7b&m=1%22"
-    },
-     {
-      "id": "WILLOW",
-      "name": "WILLOW SPORTS",
-      "type": "iframe",
-      "iframeSrc": "https://yonotv.pages.dev/wtv"
-    },
-    {
-      "id": "WTV1",
-      "name": "WILLOW CRICKET",
-      "type": "iframe",
-      "iframeSrc": "https://crichd.johirxofficial.workers.dev/live/willowusa.m3u8"
-    },
-{
-      "id": "SKY1",
-      "name": "SKY CRICKET",
-      "type": "iframe",
-      "iframeSrc":"https://yonotv.pages.dev/hindi"
-    },
-{
-      "id": "TUDN",
-      "name": "TUDN",
-      "type": "iframe",
-      "iframeSrc": "https://calm-sun-04d5.rojoni9589.workers.dev/indexind?dtv=https://crichd1.teachub.workers.dev/?v=TUDN"
-    },
-{
       "id": "ESPN",
       "name": "ESPN",
       "type": "iframe",
       "iframeSrc": "https://calm-sun-04d5.rojoni9589.workers.dev/indexind?dtv=https://crichd1.teachub.workers.dev/?v=espn"
     },
-{
-      "id": "TNT3",
-      "name": "TNT SPORTS 3",
-      "type": "iframe",
-      "iframeSrc": "https://calm-sun-04d5.rojoni9589.workers.dev/indexind?dtv=https://crichd1.teachub.workers.dev"
-    },
-    
     {
-      "id": "FC1",
-      "name": "FANCODE LIVE",
+      "id": "FB1",
+      "name": "FOOTBALL LIVE",
       "type": "iframe",
-      "iframeSrc": "https://tcfbrravdlgqrymqfcgu.supabase.co/functions/v1/stream-proxy?url=https://allinonereborn.online/fctest/playlists/match_142160/english.m3u8"
-    },
-     {
-      "id": "SKY8",
-      "name": "SKY SPORTS",
-      "type": "iframe",
-      "iframeSrc": "https://storage.googleapis.com/unicertyngher1/mux_video_ts/index-1.m3u8"
+      "iframeSrc": " https://livecdn-bp-livestream.rumsport7.live/stream/18/chunks.m3u8?is_vip=false&token=7fa3ff3eb262b1b9e6cf7dfa6e1d4291f627f887&x-sign=da5813687887fe826c08c0b5e82dc4bf&x-time=1778347860",
+      "sandbox": "allow-same-origin allow-scripts allow-fullscreen"
     },
     {
       "id": "FC",
@@ -118,10 +20,130 @@
       "iframeSrc": "https://freeplyrr.pages.dev/fc"
     },
     {
+      "id": "FC1",
+      "name": "FANCODE LIVE",
+      "type": "iframe",
+      "iframeSrc": "https://tcfbrravdlgqrymqfcgu.supabase.co/functions/v1/stream-proxy?url=https://allinonereborn.online/fctest/playlists/match_142160/english.m3u8"
+    },
+    {
+      "id": "KAYO",
+      "name": "KAYO SPORTS",
+      "type": "iframe",
+      "iframeSrc": "https://yonotv.pages.dev/hindi"
+    },
+    {
+      "id": "LTV",
+      "name": "LA LIGA TV",
+      "type": "iframe",
+      "iframeSrc": "https://rzn079.github.io/blogs/v2.html?id=DAZN-LALIGA"
+    },
+    {
+      "id": "PS1",
+      "name": "PREMIER SPORTS 1",
+      "type": "iframe",
+      "iframeSrc": "https://essss-mmpd.blogspot.com/2026/03/ttt.html?mpd=https://otte.live.fly.ww.aiv-cdn.net/gru-nitro/live/clients/dash/enc/m6sqanvm2m/out/v1/f6beb46c6e9a4132ad739f3ca27df6aa/cenc.mpd&kid=1444f4235529f183f0a5a486befe9cdb&key=e5e3fec67a1bb3472a2089c8a0a2557f&m=1"
+    },
+    {
+      "id": "PTV",
+      "name": "PTV SPORTS",
+      "type": "iframe",
+      "iframeSrc": "https://calm-sun-04d5.rojoni9589.workers.dev/indexind?dtv=https://crichd1.teachub.workers.dev/?v=ptvpk"
+    },
+    {
+      "id": "SKY",
+      "name": "SKY CRICKET",
+      "type": "iframe",
+      "iframeSrc": "https://freeplyrr.pages.dev/plyrr?src=https://api.sportzfy24.com/refer/proxy.php?id=65&#038;ts=https%3A%2F%2Fsalam-de-rasc-87.rtbcdn.ru%2Fdive%2Friver-6-604.rtbcdn.ru%2F2R0ulXfTGDdD7t4CB_MmsA%2Fstream%2Fgenetta-302.m9.rutube.ru%2FknUwQPE"
+    },
+    {
+      "id": "SKY1",
+      "name": "SKY CRICKET",
+      "type": "iframe",
+      "iframeSrc": "https://yonotv.pages.dev/hindi"
+    },
+    {
+      "id": "SS1",
+      "name": "SONY SPORTS 1",
+      "type": "iframe",
+      "iframeSrc": "https://taimoor.pro.bd/mainlight/httpsxstream.php?id=373200"
+    },
+    {
+      "id": "SS2",
+      "name": "SONY SPORTS 2",
+      "type": "iframe",
+      "iframeSrc": "https://taimoor.pro.bd/mainlight/httpsxstream.php?id=373199"
+    },
+    {
+      "id": "SS3",
+      "name": "SONY SPORTS 3",
+      "type": "iframe",
+      "iframeSrc": "https://taimoor.pro.bd/mainlight/httpsxstream.php?id=373198"
+    },
+    {
+      "id": "SS5",
+      "name": "SONY SPORTS 5",
+      "type": "iframe",
+      "iframeSrc": "https://taimoor.pro.bd/mainlight/httpsxstream.php?id=373196"
+    },
+    {
+      "id": "SSE1",
+      "name": "STAR ENGLISH 1 HD",
+      "type": "iframe",
+      "iframeSrc": "https://taimoor.pro.bd/mainlight/httpsxstream.php?id=373207"
+    },
+    {
+      "id": "SSH1",
+      "name": "STAR HINDI 1",
+      "type": "iframe",
+      "iframeSrc": "https://taimoor.pro.bd/mainlight/httpsxstream.php?id=373205"
+    },
+    {
+      "id": "SSH2",
+      "name": "STAR HINDI 2",
+      "type": "iframe",
+      "iframeSrc": "https://taimoor.pro.bd/mainlight/httpsxstream.php?id=373193"
+    },
+    {
+      "id": "TAMIL",
+      "name": "STAR SPORTS TAMIL",
+      "type": "iframe",
+      "iframeSrc": "https://taimoor.pro.bd/mainlight/httpsxstream.php?id=373195"
+    },
+    {
+      "id": "TNT1",
+      "name": "TNT SPORTS 1",
+      "type": "iframe",
+      "iframeSrc": "https://essss-mmpd.blogspot.com/2026/03/ttt.html?mpd=https://otte.live.fly.ww.aiv-cdn.net/iad-nitro/live/clients/dash/enc/cllekigzzn/out/v1/bd3b0c314fff4bb1ab4693358f3cd2d3/cenc.mpd&keyId=294b5761cefc22d0c6312939e13d8278&key=52148f1042d238849f0a7813f1da8a7b&m=1%22"
+    },
+    {
       "id": "TNT2",
       "name": "TNT SPORTS 2",
       "type": "iframe",
       "iframeSrc": "https://teamrotnt2-416.pages.dev/TNT2"
+    },
+    {
+      "id": "TNT3",
+      "name": "TNT SPORTS 3",
+      "type": "iframe",
+      "iframeSrc": "https://calm-sun-04d5.rojoni9589.workers.dev/indexind?dtv=https://crichd1.teachub.workers.dev"
+    },
+    {
+      "id": "TUDN",
+      "name": "TUDN",
+      "type": "iframe",
+      "iframeSrc": "https://calm-sun-04d5.rojoni9589.workers.dev/indexind?dtv=https://crichd1.teachub.workers.dev/?v=TUDN"
+    },
+    {
+      "id": "WILLOW",
+      "name": "WILLOW CRICKET",
+      "type": "iframe",
+      "iframeSrc": "https://yonotv.pages.dev/wtv"
+    },
+    {
+      "id": "WSP",
+      "name": "WILLOW SPORTS",
+      "type": "iframe",
+      "iframeSrc": "https://yonotv.pages.dev/wtv"
     }
   ]
 }
