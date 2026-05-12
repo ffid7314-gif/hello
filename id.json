@@ -55,6 +55,13 @@
       "iframeSrc":"https://1freecdn.xyz/hembedplayer/csstream2/1/960/540"
     },
     {
+      "id": "SPTV",
+      "name": "SPORTV",
+      "type": "iframe", 
+      "iframeSrc":https://rzn079.github.io/blogs/v2.html?id=SPOTV"
+    },
+    
+    {
       "id": "SKY",
       "name": "SKY CRICKET",
       "type": "iframe",
