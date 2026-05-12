@@ -49,28 +49,28 @@
       "iframeSrc": "https://calm-sun-04d5.rojoni9589.workers.dev/indexind?dtv=https://crichd1.teachub.workers.dev/?v=ptvpk"
     },
     {
-      "id": "SSH1",
-      "name": "STAR SPORTS 1",
-      "type": "iframe", 
-      "iframeSrc":"https://1freecdn.xyz/hembedplayer/csstream2/1/960/540"
+      "id": "SKY",
+      "name": "SKY CRICKET",
+      "type": "iframe",
+      "iframeSrc": "https://freeplyrr.pages.dev/plyrr?src=https://api.sportzfy24.com/refer/proxy.php?id=65&ts=https://salam-de-rasc-87.rtbcdn.ru/dive/river-6-604.rtbcdn.ru/2R0ulXfTGDdD7t4CB_MmsA/stream/genetta-302.m9.rutube.ru/knUwQPE"
     },
     {
       "id": "SPTV",
       "name": "SPORTV",
-      "type": "iframe", 
-      "iframeSrc":https://rzn079.github.io/blogs/v2.html?id=SPOTV"
+      "type": "iframe",
+      "iframeSrc": "https://rzn079.github.io/blogs/v2.html?id=SPOTV"
     },
     {
-      "id": "SKY",
-      "name": "SKY CRICKET",
+      "id": "SSH1",
+      "name": "STAR SPORTS 1",
       "type": "iframe",
-      "iframeSrc": "https://freeplyrr.pages.dev/plyrr?src=https://api.sportzfy24.com/refer/proxy.php?id=65&#038;ts=https%3A%2F%2Fsalam-de-rasc-87.rtbcdn.ru%2Fdive%2Friver-6-604.rtbcdn.ru%2F2R0ulXfTGDdD7t4CB_MmsA%2Fstream%2Fgenetta-302.m9.rutube.ru%2FknUwQPE"
+      "iframeSrc": "https://1freecdn.xyz/hembedplayer/csstream2/1/960/540"
     },
     {
       "id": "TNT1",
       "name": "TNT SPORTS 1",
       "type": "iframe",
-      "iframeSrc": "https://essss-mmpd.blogspot.com/2026/03/ttt.html?mpd=https://otte.live.fly.ww.aiv-cdn.net/iad-nitro/live/clients/dash/enc/cllekigzzn/out/v1/bd3b0c314fff4bb1ab4693358f3cd2d3/cenc.mpd&keyId=294b5761cefc22d0c6312939e13d8278&key=52148f1042d238849f0a7813f1da8a7b&m=1%22"
+      "iframeSrc": "https://essss-mmpd.blogspot.com/2026/03/ttt.html?mpd=https://otte.live.fly.ww.aiv-cdn.net/iad-nitro/live/clients/dash/enc/cllekigzzn/out/v1/bd3b0c314fff4bb1ab4693358f3cd2d3/cenc.mpd&keyId=294b5761cefc22d0c6312939e13d8278&key=52148f1042d238849f0a7813f1da8a7b&m=1"
     },
     {
       "id": "TNT2",
@@ -100,7 +100,7 @@
       "id": "WSP",
       "name": "WILLOW SPORTS",
       "type": "iframe",
-      "iframeSrc":"https://sub.sportsstream.workers.dev/?id=199028"
+      "iframeSrc": "https://sub.sportsstream.workers.dev/?id=199028"
     }
   ]
 }
