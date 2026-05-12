@@ -79,6 +79,12 @@
       "iframeSrc": "https://calm-sun-04d5.rojoni9589.workers.dev/indexind?dtv=https://crichd1.teachub.workers.dev/?v=TUDN"
     },
     {
+      "id": "WILLOW",
+      "name": "WILLOW CRICKET",
+      "type": "iframe", 
+      "iframeSrc":"https://1freecdn.xyz/hembedplayer/csstream5/1/960/540"
+    },
+    {
       "id": "WSP",
       "name": "WILLOW SPORTS",
       "type": "iframe",
