@@ -55,16 +55,16 @@
       "iframeSrc": "https://freeplyrr.pages.dev/plyrr?src=https://api.sportzfy24.com/refer/proxy.php?id=65&ts=https://salam-de-rasc-87.rtbcdn.ru/dive/river-6-604.rtbcdn.ru/2R0ulXfTGDdD7t4CB_MmsA/stream/genetta-302.m9.rutube.ru/knUwQPE"
     },
     {
+      "id": "SKYNZ2",
+      "name": "SKY SPORTS 2",
+      "type": "iframe",
+      "iframeSrc": "https://cricfest.pages.dev/"
+    },
+    {
       "id": "SPTV",
       "name": "SPORTV",
       "type": "iframe",
       "iframeSrc": "https://rzn079.github.io/blogs/v2.html?id=SPOTV"
-    },
-    {
-      "id": "SKYNZ2",
-      "name": "SKY SPORTS 2",
-      "type": "iframe", 
-      "iframeSrc":"https://cricfest.pages.dev/"
     },
     {
       "id": "SSH1",
