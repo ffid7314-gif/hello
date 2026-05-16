@@ -28,7 +28,7 @@
       "id": "KAYO",
       "name": "KAYO SPORTS",
       "type": "iframe",
-      "iframeSrc": "https://cricflows.netlify.app/?id=kayo"
+      "iframeSrc": "https://cricfest.netlify.app/?id=kayo"
     },
     {
       "id": "LTV",
@@ -106,7 +106,7 @@
       "id": "WSP",
       "name": "WILLOW SPORTS",
       "type": "iframe",
-      "iframeSrc": "https://cricflows.netlify.app/?id=willow"
+      "iframeSrc": "https://cricfest.netlify.app/"
     }
   ]
 }
