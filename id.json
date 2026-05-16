@@ -22,7 +22,7 @@
       "id": "FSBL",
       "name": "FSBL",
       "type": "iframe", 
-      "iframeSrc":https://footballlives.netlify.app/"
+      "iframeSrc":"https://footballlives.netlify.app/"
     },
     {
       "id": "HINDI",
