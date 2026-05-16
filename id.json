@@ -20,7 +20,7 @@
     },
     {
       "id": "FSBL",
-      "name": "FSBL",
+      "name": "FSBL LIVE",
       "type": "iframe", 
       "iframeSrc":"https://footballlives.netlify.app/"
     },
