@@ -19,6 +19,12 @@
       "iframeSrc": "https://tcfbrravdlgqrymqfcgu.supabase.co/functions/v1/stream-proxy?url=https%3A%2F%2Fallinonereborn.online%2Ffctest%2Fplaylists%2Fmatch_142151%2Fenglish.m3u8"
     },
     {
+      "id": "FSBL",
+      "name": "FSBL",
+      "type": "iframe", 
+      "iframeSrc":https://footballlives.netlify.app/"
+    },
+    {
       "id": "HINDI",
       "name": "IPL HINDI LIVE",
       "type": "iframe",
