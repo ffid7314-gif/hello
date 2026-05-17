@@ -34,7 +34,7 @@
       "id": "KAYO",
       "name": "KAYO SPORTS",
       "type": "iframe",
-      "iframeSrc": "https://cricfest.netlify.app/?id=kayo"
+      "iframeSrc": "https://kayos.netlify.app/"
     },
     {
       "id": "LTV",
