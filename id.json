@@ -67,6 +67,12 @@
       "iframeSrc": "https://cricstrm.netlify.app/?id=sky2"
     },
     {
+      "id": "SKY8",
+      "name": "SKY SPORTS FHD",
+      "type": "iframe", 
+      "iframeSrc":"https://footballlives.netlify.app/"
+    },
+    {
       "id": "SPTV",
       "name": "SPORTV",
       "type": "iframe",
@@ -77,6 +83,12 @@
       "name": "STAR SPORTS 1",
       "type": "iframe",
       "iframeSrc": "https://1freecdn.xyz/hembedplayer/csstream2/1/960/540"
+    },
+    {
+      "id": "TM",
+      "name": "TELUMONDO HD",
+      "type": "iframe", 
+      "iframeSrc":"https://rzn079.github.io/blogs/v2.html?id=TELEMUNDO"
     },
     {
       "id": "TNT1",
