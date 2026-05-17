@@ -67,6 +67,12 @@
       "iframeSrc": "https://cricstrm.netlify.app/?id=sky2"
     },
     {
+      "id": "SKY3",
+      "name": "SKY SPORTS FHD",
+      "type": "iframe", 
+      "iframeSrc":"https://tvgotk.wapka.site/pc"
+    },
+    {
       "id": "SKY8",
       "name": "SKY SPORTS FHD",
       "type": "iframe", 
