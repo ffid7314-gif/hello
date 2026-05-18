@@ -7,6 +7,13 @@
       "iframeSrc": "https://calm-sun-04d5.rojoni9589.workers.dev/indexind?dtv=https://crichd1.teachub.workers.dev/?v=espn"
     },
     {
+      "id": "FOX",
+      "name": "FOX CRICKET",
+      "type": "iframe", 
+      "iframeSrc":"https://fox.cdn9859.shop/embed_view.php?id=b6bd5504006f4d46"
+    },
+    
+    {
       "id": "FC",
       "name": "FANCODE",
       "type": "iframe",
