@@ -40,7 +40,7 @@
       "id": "KAYO",
       "name": "KAYO SPORTS",
       "type": "iframe",
-      "iframeSrc": "https://kayos.netlify.app/"
+      "iframeSrc": "https://cricflows.netlify.app/"
     },
     {
       "id": "LTV",
@@ -130,7 +130,7 @@
       "id": "WILLOW",
       "name": "WILLOW CRICKET",
       "type": "iframe",
-      "iframeSrc": "https://cricflows.netlify.app/"
+      "iframeSrc": "https://cricflows.netlify.app/?id=willow"
     },
     {
       "id": "WTV",
