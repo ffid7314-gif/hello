@@ -9,10 +9,9 @@
     {
       "id": "FOX",
       "name": "FOX CRICKET",
-      "type": "iframe", 
-      "iframeSrc":"https://fox.cdn9859.shop/embed_view.php?id=b6bd5504006f4d46"
+      "type": "iframe",
+      "iframeSrc": "https://fox.cdn9859.shop/embed_view.php?id=b6bd5504006f4d46"
     },
-    
     {
       "id": "FC",
       "name": "FANCODE",
@@ -76,14 +75,14 @@
     {
       "id": "SKY3",
       "name": "SKY SPORTS FHD",
-      "type": "iframe", 
-      "iframeSrc":"https://tvgotk.wapka.site/pc"
+      "type": "iframe",
+      "iframeSrc": "https://tvgotk.wapka.site/pc"
     },
     {
       "id": "SKY8",
       "name": "SKY SPORTS FHD",
-      "type": "iframe", 
-      "iframeSrc":"https://footballlives.netlify.app/"
+      "type": "iframe",
+      "iframeSrc": "https://footballlives.netlify.app/"
     },
     {
       "id": "SPTV",
@@ -100,8 +99,8 @@
     {
       "id": "TM",
       "name": "TELUMONDO HD",
-      "type": "iframe", 
-      "iframeSrc":"https://rzn079.github.io/blogs/v2.html?id=TELEMUNDO"
+      "type": "iframe",
+      "iframeSrc": "https://rzn079.github.io/blogs/v2.html?id=TELEMUNDO"
     },
     {
       "id": "TNT1",
@@ -136,8 +135,8 @@
     {
       "id": "WTV",
       "name": "WILLOW WORLD",
-      "type": "iframe", 
-      "iframeSrc":"https://tvsen5.aynaott.com/willowhd/index.m3u8"
+      "type": "iframe",
+      "iframeSrc": "https://tvsen5.aynaott.com/willowhd/index.m3u8"
     },
     {
       "id": "WSP",
