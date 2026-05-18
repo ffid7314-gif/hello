@@ -13,6 +13,12 @@
       "iframeSrc": "https://fox.cdn9859.shop/embed_view.php?id=b6bd5504006f4d46"
     },
     {
+      "id": "FUBO",
+      "name": "FUBO SPORTS",
+      "type": "iframe", 
+      "iframeSrc":"https://cricflows.netlify.app/?id=fubo"
+    },
+    {
       "id": "FC",
       "name": "FANCODE",
       "type": "iframe",
