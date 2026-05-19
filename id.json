@@ -103,6 +103,12 @@
       "iframeSrc": "https://1freecdn.xyz/hembedplayer/csstream2/1/960/540"
     },
     {
+      "id": "TS",
+      "name": "T SPORTS HD",
+      "type": "iframe", 
+"iframeSrc":"https://tvsen7.aynaott.com/tsports-hd/index.m3u8?e=1779106262&u=78be6644-0a65-48ec-81a4-089ac65a2619&token=4f3177d3c123831e2fad85e20c5"
+    },
+    {
       "id": "TM",
       "name": "TELUMONDO HD",
       "type": "iframe",
