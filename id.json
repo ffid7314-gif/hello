@@ -1,6 +1,18 @@
 {
   "iframes": [
     {
+      "id": "BEIN2",
+      "name": "BEIN SPORTS 2",
+      "type": "iframe", 
+"iframeSrc":"https://starsportshindi-8a6.pages.dev/?id=bein2"
+    },
+{
+      "id": "BEIN3",
+      "name": "BEIN SPORTS 3",
+      "type": "iframe", 
+"iframeSrc":"https://starsportshindi-8a6.pages.dev/?id=bein3"
+    },
+    {
       "id": "ESPN",
       "name": "ESPN",
       "type": "iframe",
@@ -35,6 +47,12 @@
       "name": "FSBL LIVE",
       "type": "iframe",
       "iframeSrc": "https://footballlives.netlify.app/"
+    },
+    {
+      "id": "HS",
+      "name": "HOTSTAR LIVE",
+      "type": "iframe", 
+"iframeSrc":"https://api.sportzfy24.com/refer/play.php?id=73"
     },
     {
       "id": "HINDI",
