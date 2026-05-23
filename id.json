@@ -3,14 +3,14 @@
     {
       "id": "BEIN2",
       "name": "BEIN SPORTS 2",
-      "type": "iframe", 
-"iframeSrc":"https://starsportshindi-8a6.pages.dev/?id=bein2"
+      "type": "iframe",
+      "iframeSrc": "https://starsportshindi-8a6.pages.dev/?id=bein2"
     },
-{
+    {
       "id": "BEIN3",
       "name": "BEIN SPORTS 3",
-      "type": "iframe", 
-"iframeSrc":"https://starsportshindi-8a6.pages.dev/?id=bein3"
+      "type": "iframe",
+      "iframeSrc": "https://starsportshindi-8a6.pages.dev/?id=bein3"
     },
     {
       "id": "ESPN",
@@ -19,28 +19,22 @@
       "iframeSrc": "https://calm-sun-04d5.rojoni9589.workers.dev/indexind?dtv=https://crichd1.teachub.workers.dev/?v=espn"
     },
     {
-      "id": "FOX",
-      "name": "FOX CRICKET",
-      "type": "iframe",
-      "iframeSrc": "https://starsportshindi-8a6.pages.dev/?id=fox501"
-    },
-    {
-      "id": "FUBO",
-      "name": "FUBO SPORTS",
-      "type": "iframe", 
-      "iframeSrc":"https://cricflows.netlify.app/?id=fubo"
-    },
-    {
       "id": "FC",
       "name": "FANCODE",
       "type": "iframe",
       "iframeSrc": "https://freeplyrr.pages.dev/fc"
     },
     {
-      "id": "FC1",
-      "name": "FANCODE LIVE",
+      "id": "FOX2",
+      "name": "FOX SPORTS 2",
       "type": "iframe",
-      "iframeSrc": "https://tcfbrravdlgqrymqfcgu.supabase.co/functions/v1/stream-proxy?url=https%3A%2F%2Fallinonereborn.online%2Ffctest%2Fplaylists%2Fmatch_142151%2Fenglish.m3u8"
+      "iframeSrc": "https://tvsen7.aynaott.com/foxsports2/index.m3u8?e=1779358089&u=78be6644-0a65-48ec-81a4-089ac65a2619&token=7549b9c1c3649ac7f12265bd55dfffba"
+    },
+    {
+      "id": "FOX",
+      "name": "FOX CRICKET",
+      "type": "iframe",
+      "iframeSrc": "https://starsportshindi-8a6.pages.dev/?id=fox501"
     },
     {
       "id": "FSBL",
@@ -49,10 +43,16 @@
       "iframeSrc": "https://footballlives.netlify.app/"
     },
     {
+      "id": "FUBO",
+      "name": "FUBO SPORTS",
+      "type": "iframe",
+      "iframeSrc": "https://cricflows.netlify.app/?id=fubo"
+    },
+    {
       "id": "HS",
       "name": "HOTSTAR LIVE",
-      "type": "iframe", 
-"iframeSrc":"https://api.sportzfy24.com/refer/play.php?id=73"
+      "type": "iframe",
+      "iframeSrc": "https://api.sportzfy24.com/refer/play.php?id=73"
     },
     {
       "id": "HINDI",
@@ -97,18 +97,6 @@
       "iframeSrc": "https://cinearena.fun/chns/str/skynz/"
     },
     {
-      "id": "SKY3",
-      "name": "SKY SPORTS FHD",
-      "type": "iframe",
-      "iframeSrc": "https://circleplay.top/live/sports/sky_sport_2.php"
-    },
-    {
-      "id": "SKY8",
-      "name": "SKY SPORTS FHD",
-      "type": "iframe",
-      "iframeSrc": "https://cricflows.netlify.app/"
-    },
-    {
       "id": "SPTV",
       "name": "SPORTV",
       "type": "iframe",
@@ -123,8 +111,8 @@
     {
       "id": "TS",
       "name": "T SPORTS HD",
-      "type": "iframe", 
-"iframeSrc":"https://tvsen7.aynaott.com/tsports-hd/index.m3u8?e=1779106262&u=78be6644-0a65-48ec-81a4-089ac65a2619&token=4f3177d3c123831e2fad85e20c5"
+      "type": "iframe",
+      "iframeSrc": "https://tvsen7.aynaott.com/tsports-hd/index.m3u8?e=1779106262&u=78be6644-0a65-48ec-81a4-089ac65a2619&token=4f3177d3c123831e2fad85e20c5"
     },
     {
       "id": "TM",
@@ -142,7 +130,7 @@
       "id": "TNT2",
       "name": "TNT SPORTS 2",
       "type": "iframe",
-      "iframeSrc": "https://teamrotnt2-416.pages.dev/TNT2"
+      "iframeSrc": "https://rzn079.github.io/blogs/v2.html?id=TNT_2_GB"
     },
     {
       "id": "TNT3",
@@ -157,22 +145,34 @@
       "iframeSrc": "https://calm-sun-04d5.rojoni9589.workers.dev/indexind?dtv=https://crichd1.teachub.workers.dev/?v=TUDN"
     },
     {
+      "id": "UNIVERSO",
+      "name": "UNIVERSO",
+      "type": "iframe",
+      "iframeSrc": "https://rzn079.github.io/blogs/v2.html?id=UNIVERSO"
+    },
+    {
       "id": "WILLOW",
       "name": "WILLOW CRICKET",
       "type": "iframe",
       "iframeSrc": "https://crichd.johirxofficial.workers.dev/live/willowusa.m3u8"
     },
     {
-      "id": "WTV",
-      "name": "WILLOW WORLD",
+      "id": "ZIGGO1",
+      "name": "ZIGGO 1",
       "type": "iframe",
-      "iframeSrc": "https://tvsen5.aynaott.com/willowhd/index.m3u8"
+      "iframeSrc": "https://rzn079.github.io/blogs/v2.html?id=ZIGGO1"
     },
     {
-      "id": "WSP",
-      "name": "WILLOW SPORTS",
+      "id": "ZIGGO2",
+      "name": "ZIGGO 2",
       "type": "iframe",
-      "iframeSrc": "https://cricfest.netlify.app/"
+      "iframeSrc": "https://rzn079.github.io/blogs/v2.html?id=ZIGGO2"
+    },
+    {
+      "id": "ZIGGO3",
+      "name": "ZIGGO 3",
+      "type": "iframe",
+      "iframeSrc": "https://rzn079.github.io/blogs/v2.html?id=ZIGGO3"
     }
   ]
 }
