@@ -157,6 +157,13 @@
       "iframeSrc": "https://starsportshindi-8a6.pages.dev/?id=willow"
     },
     {
+      "id": "WILLOW2",
+      "name": "WILLOW 2",
+      "type": "iframe", 
+"iframeSrc":"https://crichd.johirxofficial.workers.dev/live/willowextra.m3u8"
+    },
+    
+    {
       "id": "ZIGGO1",
       "name": "ZIGGO 1",
       "type": "iframe",
