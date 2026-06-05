@@ -153,8 +153,8 @@
     {
       "id": "VIX",
       "name": "VIX SPAINISH",
-      "type": "iframe", 
-"iframeSrc":"https://footlivestrm.pages.dev/?id=VIX"
+      "type": "iframe",
+      "iframeSrc": "https://footlivestrm.pages.dev/?id=VIX"
     },
     {
       "id": "WILLOW",
@@ -165,10 +165,9 @@
     {
       "id": "WILLOW2",
       "name": "WILLOW 2",
-      "type": "iframe", 
-"iframeSrc":"https://api.sportzfy24.com/refer/play.php?id=113"
+      "type": "iframe",
+      "iframeSrc": "https://api.sportzfy24.com/refer/play.php?id=113"
     },
-    
     {
       "id": "ZIGGO1",
       "name": "ZIGGO 1",
