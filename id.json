@@ -13,6 +13,18 @@
       "iframeSrc": "https://starsportshindi-8a6.pages.dev/?id=bein3"
     },
     {
+      "id": "CANAL5",
+      "name": "CANAL 5",
+      "type": "iframe",
+      "iframeSrc": "https://footlivestrm.pages.dev/?id=canal5"
+    },
+    {
+      "id": "CB2",
+      "name": "CRICBUZZ 2",
+      "type": "iframe",
+      "iframeSrc": "https://1freecdn.xyz/hembedplayer/csstream3/1/960/540"
+    },
+    {
       "id": "ESPN",
       "name": "ESPN",
       "type": "iframe",
@@ -25,22 +37,16 @@
       "iframeSrc": "https://freeplyrr.pages.dev/fc"
     },
     {
-      "id": "FOX2",
-      "name": "FOX SPORTS 2",
-      "type": "iframe",
-      "iframeSrc": "https://tvsen7.aynaott.com/foxsports2/index.m3u8?e=1779358089&u=78be6644-0a65-48ec-81a4-089ac65a2619&token=7549b9c1c3649ac7f12265bd55dfffba"
-    },
-    {
       "id": "FOX",
       "name": "FOX CRICKET",
       "type": "iframe",
       "iframeSrc": "https://starsportshindi-8a6.pages.dev/?id=fox501"
     },
     {
-      "id": "SP1",
-      "name": "SPORT 1",
+      "id": "FOX2",
+      "name": "FOX SPORTS 2",
       "type": "iframe",
-      "iframeSrc": "https://rzn079.github.io/blogs/v2.html?id=SER1"
+      "iframeSrc": "https://tvsen7.aynaott.com/foxsports2/index.m3u8?e=1779358089&u=78be6644-0a65-48ec-81a4-089ac65a2619&token=7549b9c1c3649ac7f12265bd55dfffba"
     },
     {
       "id": "FUBO",
@@ -53,12 +59,6 @@
       "name": "HOTSTAR LIVE",
       "type": "iframe",
       "iframeSrc": "https://api.sportzfy24.com/refer/play.php?id=73"
-    },
-    {
-      "id": "CB2",
-      "name": "CRICBUZZ 2",
-      "type": "iframe",
-      "iframeSrc": "https://1freecdn.xyz/hembedplayer/csstream3/1/960/540"
     },
     {
       "id": "KAYO",
@@ -97,6 +97,12 @@
       "iframeSrc": "https://freestrm.pages.dev/?id=sky1nz"
     },
     {
+      "id": "SP1",
+      "name": "SPORT 1",
+      "type": "iframe",
+      "iframeSrc": "https://rzn079.github.io/blogs/v2.html?id=SER1"
+    },
+    {
       "id": "SPTV",
       "name": "SPORTV",
       "type": "iframe",
@@ -121,22 +127,16 @@
       "iframeSrc": "https://rzn079.github.io/blogs/v2.html?id=TELEMUNDO"
     },
     {
-      "id": "TNT1",
-      "name": "TNT SPORTS 1",
-      "type": "iframe",
-      "iframeSrc": "https://essss-mmpd.blogspot.com/2026/03/ttt.html?mpd=https://otte.live.fly.ww.aiv-cdn.net/iad-nitro/live/clients/dash/enc/cllekigzzn/out/v1/bd3b0c314fff4bb1ab4693358f3cd2d3/cenc.mpd&keyId=294b5761cefc22d0c6312939e13d8278&key=52148f1042d238849f0a7813f1da8a7b&m=1"
-    },
-    {
-      "id": "TNT2",
-      "name": "TNT SPORTS 2",
-      "type": "iframe",
-      "iframeSrc": "https://rzn079.github.io/blogs/v2.html?id=TNT_2_GB"
-    },
-    {
       "id": "TNT3",
       "name": "TNT SPORTS 3",
       "type": "iframe",
       "iframeSrc": "https://calm-sun-04d5.rojoni9589.workers.dev/indexind?dtv=https://crichd1.teachub.workers.dev"
+    },
+    {
+      "id": "TSN4",
+      "name": "TSN 4",
+      "type": "iframe",
+      "iframeSrc": "https://footlivestrm.pages.dev/?id=TSN4"
     },
     {
       "id": "TUDN",
@@ -167,24 +167,6 @@
       "name": "WILLOW 2",
       "type": "iframe",
       "iframeSrc": "https://api.sportzfy24.com/refer/play.php?id=113"
-    },
-    {
-      "id": "ZIGGO1",
-      "name": "ZIGGO 1",
-      "type": "iframe",
-      "iframeSrc": "https://rzn079.github.io/blogs/v2.html?id=ZIGGO1"
-    },
-    {
-      "id": "ZIGGO2",
-      "name": "ZIGGO 2",
-      "type": "iframe",
-      "iframeSrc": "https://rzn079.github.io/blogs/v2.html?id=ZIGGO2"
-    },
-    {
-      "id": "ZIGGO3",
-      "name": "ZIGGO 3",
-      "type": "iframe",
-      "iframeSrc": "https://rzn079.github.io/blogs/v2.html?id=ZIGGO3"
     }
   ]
 }
