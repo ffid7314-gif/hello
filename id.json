@@ -37,6 +37,12 @@
       "iframeSrc": "https://1freecdn.xyz/hembedplayer/csstream3/1/960/540"
     },
     {
+      "id": "ENGLISH1",
+      "name": "ENGLISH",
+      "type": "iframe",
+      "iframeSrc": "<iframe src=\"https://soccerball.st/rampages/search1/\" width=\"100%\" height=\"500px\" sandbox=\"allow-scripts allow-same-origin allow-fullscreen\"></iframe>"
+    },
+    {
       "id": "ESPN",
       "name": "ESPN",
       "type": "iframe",
