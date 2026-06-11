@@ -40,7 +40,10 @@
       "id": "ENGLISH1",
       "name": "ENGLISH",
       "type": "iframe",
-      "iframeSrc": "<iframe src=\"https://soccerball.st/rampages/search1/\" width=\"100%\" height=\"500px\" sandbox=\"allow-scripts allow-same-origin allow-fullscreen\"></iframe>"
+      "iframeSrc": "https://soccerball.st/rampages/search1/",
+      "width": "100%",
+      "height": "500px",
+      "sandbox": "allow-scripts allow-same-origin allow-fullscreen"
     },
     {
       "id": "ESPN",
