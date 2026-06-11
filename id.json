@@ -1,6 +1,12 @@
 {
   "iframes": [
     {
+      "id": "ARABIC1",
+      "name": "ARABIC B10",
+      "type": "iframe",
+      "iframeSrc": "https://k1.sansa-yaman.net/albaplayer/b10/"
+    },
+    {
       "id": "BEIN2",
       "name": "BEIN SPORTS 2",
       "type": "iframe",
@@ -17,6 +23,12 @@
       "name": "CANAL 5",
       "type": "iframe",
       "iframeSrc": "https://footlivestrm.pages.dev/?id=canal5"
+    },
+    {
+      "id": "CAZE",
+      "name": "CAZE TV",
+      "type": "iframe",
+      "iframeSrc": "https://footlivestrm.pages.dev/?id=cazetv"
     },
     {
       "id": "CB2",
