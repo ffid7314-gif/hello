@@ -37,13 +37,10 @@
       "iframeSrc": "https://1freecdn.xyz/hembedplayer/csstream3/1/960/540"
     },
     {
-      "id": "ENGLISH1",
-      "name": "ENGLISH",
+      "id": "DSPORTS",
+      "name": "D SPORTS",
       "type": "iframe",
-      "iframeSrc": "https://soccerball.st/rampages/search1/",
-      "width": "100%",
-      "height": "500px",
-      "sandbox": "allow-scripts allow-same-origin allow-fullscreen"
+      "iframeSrc": "https://footlivestrm.pages.dev/?id=dsports"
     },
     {
       "id": "ESPN",
@@ -74,6 +71,12 @@
       "name": "FUBO SPORTS",
       "type": "iframe",
       "iframeSrc": "https://footlivestrm.pages.dev/?id=fubo"
+    },
+    {
+      "id": "HINDI1",
+      "name": "HINDI",
+      "type": "iframe",
+      "iframeSrc": "https://footlivestrm.pages.dev/?id=zeehindi"
     },
     {
       "id": "HS",
@@ -148,12 +151,6 @@
       "iframeSrc": "https://rzn079.github.io/blogs/v2.html?id=TELEMUNDO"
     },
     {
-      "id": "TNT3",
-      "name": "TNT SPORTS 3",
-      "type": "iframe",
-      "iframeSrc": "https://calm-sun-04d5.rojoni9589.workers.dev/indexind?dtv=https://crichd1.teachub.workers.dev"
-    },
-    {
       "id": "TSN4",
       "name": "TSN 4",
       "type": "iframe",
@@ -170,12 +167,6 @@
       "name": "UNIVERSO",
       "type": "iframe",
       "iframeSrc": "https://rzn079.github.io/blogs/v2.html?id=UNIVERSO"
-    },
-    {
-      "id": "VIX",
-      "name": "VIX SPAINISH",
-      "type": "iframe",
-      "iframeSrc": "https://footlivestrm.pages.dev/"
     },
     {
       "id": "WILLOW",
