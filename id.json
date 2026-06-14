@@ -73,6 +73,12 @@
       "iframeSrc": "https://footlivestrm.pages.dev/?id=foxsports"
     },
     {
+      "id": "ITV",
+      "name": "ITV USA",
+      "type": "iframe", 
+"iframeSrc":"https://freestrm.pages.dev/?id=itv"
+    },
+    {
       "id": "M6",
       "name": "FRANCE LIVE",
       "type": "iframe",
