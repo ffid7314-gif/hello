@@ -181,6 +181,12 @@
       "iframeSrc": "https://freestrm.pages.dev/?id=tsn"
     },
     {
+      "id": "TNT1",
+      "name": "TNT SPORTS 1",
+      "type": "iframe",
+      "iframeSrc": "https://teamrotnt01.pages.dev/"
+    },
+    {
       "id": "TUDN",
       "name": "TUDN",
       "type": "iframe",
