@@ -7,6 +7,12 @@
       "iframeSrc": "https://freestrm.pages.dev/?id=kooran12"
     },
     {
+      "id": "2",
+      "name": "FOX CRICKET",
+      "type": "iframe",
+      "iframeSrc": "https://moviestrm.pages.dev/?id=2"
+    },
+    {
       "id": "BEIN2",
       "name": "BEIN SPORTS 2",
       "type": "iframe",
