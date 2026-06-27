@@ -52,31 +52,13 @@
       "id": "ESPN",
       "name": "ESPN",
       "type": "iframe",
-      "iframeSrc": "https://moviestrm.pages.dev/?id=dami"
+      "iframeSrc": "https://allrounderlive.sayanwork-studioo.workers.dev/eng"
     },
     {
       "id": "FC",
       "name": "FANCODE",
       "type": "iframe",
       "iframeSrc": "https://freeplyrr.pages.dev/fc"
-    },
-    {
-      "id": "FOX1",
-      "name": "FOX CRICKET 1",
-      "type": "iframe",
-      "iframeSrc": "https://moviestrm.pages.dev/?id=1"
-    },
-    {
-      "id": "FOX3",
-      "name": "FOX CRICKET 2",
-      "type": "iframe",
-      "iframeSrc": "https://moviestrm.pages.dev/?id=2"
-    },
-    {
-      "id": "FOX2",
-      "name": "FOX SPORTS 2",
-      "type": "iframe",
-      "iframeSrc": "https://allrounderlive.sayanwork-studioo.workers.dev/eng"
     },
     {
       "id": "M6",
