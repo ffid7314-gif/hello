@@ -61,10 +61,10 @@
       "iframeSrc": "https://freeplyrr.pages.dev/fc"
     },
     {
-      "id": "M6",
-      "name": "FRANCE LIVE",
+      "id": "TSN",
+      "name": " LIVE",
       "type": "iframe",
-      "iframeSrc": "https://footlivestrm.pages.dev/?id=m6"
+      "iframeSrc": "https://moviestrm.pages.dev/"
     },
     {
       "id": "FUBO",
