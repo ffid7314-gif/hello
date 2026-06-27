@@ -7,12 +7,6 @@
       "iframeSrc": "https://freestrm.pages.dev/?id=kooran12"
     },
     {
-      "id": "2",
-      "name": "FOX CRICKET",
-      "type": "iframe",
-      "iframeSrc": "https://moviestrm.pages.dev/?id=2"
-    },
-    {
       "id": "BEIN2",
       "name": "BEIN SPORTS 2",
       "type": "iframe",
@@ -67,22 +61,22 @@
       "iframeSrc": "https://freeplyrr.pages.dev/fc"
     },
     {
-      "id": "1",
-      "name": "FOX CRICKET",
+      "id": "FOX1",
+      "name": "FOX CRICKET 1",
       "type": "iframe",
       "iframeSrc": "https://moviestrm.pages.dev/?id=1"
+    },
+    {
+      "id": "FOX3",
+      "name": "FOX CRICKET 2",
+      "type": "iframe",
+      "iframeSrc": "https://moviestrm.pages.dev/?id=2"
     },
     {
       "id": "FOX2",
       "name": "FOX SPORTS 2",
       "type": "iframe",
       "iframeSrc": "https://allrounderlive.sayanwork-studioo.workers.dev/eng"
-    },
-    {
-      "id": "ITV",
-      "name": "ITV USA",
-      "type": "iframe", 
-"iframeSrc":"https://freestrm.pages.dev/?id=itv"
     },
     {
       "id": "M6",
@@ -113,6 +107,12 @@
       "name": "HOTSTAR LIVE",
       "type": "iframe",
       "iframeSrc": "https://api.sportzfy24.com/refer/play.php?id=73"
+    },
+    {
+      "id": "ITV",
+      "name": "ITV USA",
+      "type": "iframe",
+      "iframeSrc": "https://freestrm.pages.dev/?id=itv"
     },
     {
       "id": "KAYO",
@@ -172,7 +172,7 @@
       "id": "TS",
       "name": "T SPORTS HD",
       "type": "iframe",
-      "iframeSrc": "https://tvsen7.aynaott.com/tsports-hd/index.m3u8?e=1779106262&u=78be6644-0a65-48ec-81a4-089ac65a2619&token=4f3177d3c123831e2fad85e20c5"
+      "iframeSrc": "https://tvsen7.aynaott.com/tsports-hd/index.m3u8"
     },
     {
       "id": "TM",
@@ -181,16 +181,16 @@
       "iframeSrc": "https://fifa-world-cup-live.pages.dev/ios"
     },
     {
-      "id": "TSN4",
-      "name": "TSN 4",
-      "type": "iframe",
-      "iframeSrc": "https://freestrm.pages.dev/?id=tsn"
-    },
-    {
       "id": "TNT1",
       "name": "TNT SPORTS 1",
       "type": "iframe",
       "iframeSrc": "https://teamrotnt01.pages.dev/"
+    },
+    {
+      "id": "TSN4",
+      "name": "TSN 4",
+      "type": "iframe",
+      "iframeSrc": "https://freestrm.pages.dev/?id=tsn"
     },
     {
       "id": "TUDN",
