@@ -1,12 +1,6 @@
 {
   "iframes": [
     {
-      "id": "ARABIC1",
-      "name": "ARABIC B10",
-      "type": "iframe",
-      "iframeSrc": "https://freestrm.pages.dev/?id=kooran12"
-    },
-    {
       "id": "BEIN2",
       "name": "BEIN SPORTS 2",
       "type": "iframe",
