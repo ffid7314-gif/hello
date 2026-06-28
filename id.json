@@ -172,7 +172,7 @@
       "id": "TSN4",
       "name": "TSN 4",
       "type": "iframe",
-      "iframeSrc": "https://freestrm.pages.dev/?id=tsn"
+      "iframeSrc": "https://storage.googleapis.com/xlakersm/bsporting/manifest.m3u8"
     },
     {
       "id": "TUDN",
