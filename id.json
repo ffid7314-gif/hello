@@ -58,7 +58,7 @@
       "id": "TSN",
       "name": "LIVE",
       "type": "iframe",
-      "iframeSrc": "https://moviestrm.pages.dev/"
+      "iframeSrc": "https://fifa-world-cup-live.pages.dev/tsn"
     },
     {
       "id": "FUBO",
