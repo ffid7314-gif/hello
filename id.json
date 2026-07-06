@@ -1,52 +1,10 @@
 {
   "iframes": [
     {
-      "id": "BEIN2",
-      "name": "BEIN SPORTS 2",
-      "type": "iframe",
-      "iframeSrc": "https://starsportshindi-8a6.pages.dev/?id=bein2"
-    },
-    {
-      "id": "BEIN3",
-      "name": "BEIN SPORTS 3",
-      "type": "iframe",
-      "iframeSrc": "https://starsportshindi-8a6.pages.dev/?id=bein3"
-    },
-    {
-      "id": "CZ",
-      "name": "CANAL 5",
-      "type": "iframe",
-      "iframeSrc": "https://tv4wapp.wapka.fun/?app=sportsmpd&id=24"
-    },
-    {
       "id": "CAZE",
       "name": "CAZE TV",
       "type": "iframe",
-      "iframeSrc": "https://tv4wapp.wapka.fun/?app=sportsm3u8&id=2"
-    },
-    {
-      "id": "CB2",
-      "name": "CRICBUZZ 2",
-      "type": "iframe",
-      "iframeSrc": "https://tv4wapp.wapka.fun/?app=toffee&id=sony_sports_5_hd"
-    },
-    {
-      "id": "DSPORTS",
-      "name": "D SPORTS",
-      "type": "iframe",
-      "iframeSrc": "https://footlivestrm.pages.dev/?id=dsports"
-    },
-    {
-      "id": "W9",
-      "name": "DUTCH LIVE",
-      "type": "iframe",
-      "iframeSrc": "https://moviestrm.pages.dev/?id=w9"
-    },
-    {
-      "id": "ESPN",
-      "name": "ESPN",
-      "type": "iframe",
-      "iframeSrc": "https://fifa-world-cup-live.pages.dev/fussball"
+      "iframeSrc": "https://moviestrm.pages.dev/?id=caze-tv"
     },
     {
       "id": "FC",
@@ -55,106 +13,34 @@
       "iframeSrc": "https://freeplyrr.pages.dev/fc"
     },
     {
-      "id": "TSN",
-      "name": "LIVE",
+      "id": "FIFA1",
+      "name": "FIFA1",
       "type": "iframe",
-      "iframeSrc": "https://fifa-world-cup-live.pages.dev/tsn"
+      "iframeSrc": "https://moviestrm.pages.dev/?id=zee-eng"
     },
     {
-      "id": "FUBO",
-      "name": "FUBO SPORTS",
+      "id": "FOX",
+      "name": "FOX",
       "type": "iframe",
-      "iframeSrc": "https://footlivestrm.pages.dev/?id=fubo"
+      "iframeSrc": "https://moviestrm.pages.dev/?id=fox-sports"
     },
     {
-      "id": "ORF",
-      "name": "GERMANY LIVE",
+      "id": "FUSSBALL",
+      "name": "FUSSBALL",
       "type": "iframe",
-      "iframeSrc": "https://footlivestrm.pages.dev/?id=ORF"
+      "iframeSrc": "https://fifa-world-cup-live.pages.dev/fussball"
     },
     {
-      "id": "HINDI1",
+      "id": "HINDI",
       "name": "HINDI",
       "type": "iframe",
-      "iframeSrc": "https://tv4wapp.wapka.fun/?app=khel&id=1"
+      "iframeSrc": "https://moviestrm.pages.dev/?id=zee-hindi"
     },
     {
-      "id": "HS",
-      "name": "HOTSTAR LIVE",
+      "id": "M6",
+      "name": "M6",
       "type": "iframe",
-      "iframeSrc": "https://api.sportzfy24.com/refer/play.php?id=73"
-    },
-    {
-      "id": "ITV",
-      "name": "ITV USA",
-      "type": "iframe",
-      "iframeSrc": "https://freestrm.pages.dev/?id=itv"
-    },
-    {
-      "id": "KAYO",
-      "name": "KAYO SPORTS",
-      "type": "iframe",
-      "iframeSrc": "https://starsportshindi-8a6.pages.dev/?id=kayo"
-    },
-    {
-      "id": "LTV",
-      "name": "LA LIGA TV",
-      "type": "iframe",
-      "iframeSrc": "https://rzn079.github.io/blogs/v2.html?id=DAZN-LALIGA"
-    },
-    {
-      "id": "PS1",
-      "name": "PREMIER SPORTS 1",
-      "type": "iframe",
-      "iframeSrc": "https://essss-mmpd.blogspot.com/2026/03/ttt.html?mpd=https://otte.live.fly.ww.aiv-cdn.net/gru-nitro/live/clients/dash/enc/m6sqanvm2m/out/v1/f6beb46c6e9a4132ad739f3ca27df6aa/cenc.mpd&kid=1444f4235529f183f0a5a486befe9cdb&key=e5e3fec67a1bb3472a2089c8a0a2557f&m=1"
-    },
-    {
-      "id": "PTV",
-      "name": "PTV SPORTS",
-      "type": "iframe",
-      "iframeSrc": "https://calm-sun-04d5.rojoni9589.workers.dev/indexind?dtv=https://crichd1.teachub.workers.dev/?v=ptvpk"
-    },
-    {
-      "id": "SKY",
-      "name": "SKY CRICKET",
-      "type": "iframe",
-      "iframeSrc": "https://freestrm.pages.dev/?id=sky"
-    },
-    {
-      "id": "SKYNZ2",
-      "name": "SKY SPORTS 2",
-      "type": "iframe",
-      "iframeSrc": "https://freestrm.pages.dev/?id=sky1nz"
-    },
-    {
-      "id": "SP1",
-      "name": "SPORT 1",
-      "type": "iframe",
-      "iframeSrc": "https://rzn079.github.io/blogs/v2.html?id=SER1"
-    },
-    {
-      "id": "SPTV",
-      "name": "SPORTV",
-      "type": "iframe",
-      "iframeSrc": "https://rzn079.github.io/blogs/v2.html?id=SPOTV"
-    },
-    {
-      "id": "SSH1",
-      "name": "STAR SPORTS 1",
-      "type": "iframe",
-      "iframeSrc": "https://1freecdn.xyz/hembedplayer/csstream2/1/960/540"
-    },
-    {
-      "id": "TS",
-      "name": "T SPORTS HD",
-      "type": "iframe",
-      "iframeSrc": "https://tvsen7.aynaott.com/tsports-hd/index.m3u8"
-    },
-    {
-      "id": "TM",
-      "name": "TELUMONDO HD",
-      "type": "iframe",
-      "iframeSrc": "https://fifa-world-cup-live.pages.dev/ios"
+      "iframeSrc": "https://moviestrm.pages.dev/?id=m6plus"
     },
     {
       "id": "TNT1",
@@ -163,34 +49,16 @@
       "iframeSrc": "https://teamrotnt01.pages.dev/"
     },
     {
-      "id": "TSN4",
-      "name": "TSN 4",
+      "id": "TSN",
+      "name": "TSN",
       "type": "iframe",
-      "iframeSrc": "https://storage.googleapis.com/xlakersm/bsporting/manifest.m3u8"
+      "iframeSrc": "https://moviestrm.pages.dev/?id=tsn"
     },
     {
-      "id": "TUDN",
-      "name": "TUDN",
+      "id": "W9",
+      "name": "DUTCH LIVE",
       "type": "iframe",
-      "iframeSrc": "https://calm-sun-04d5.rojoni9589.workers.dev/indexind?dtv=https://crichd1.teachub.workers.dev/?v=TUDN"
-    },
-    {
-      "id": "UNIVERSO",
-      "name": "UNIVERSO",
-      "type": "iframe",
-      "iframeSrc": "https://rzn079.github.io/blogs/v2.html?id=UNIVERSO"
-    },
-    {
-      "id": "WILLOW",
-      "name": "WILLOW CRICKET",
-      "type": "iframe",
-      "iframeSrc": "https://freestrm.pages.dev/?id=willowusa"
-    },
-    {
-      "id": "WILLOW2",
-      "name": "WILLOW 2",
-      "type": "iframe",
-      "iframeSrc": "https://teamrowillow.pages.dev/willow"
+      "iframeSrc": "https://moviestrm.pages.dev/?id=w9"
     }
   ]
 }
