@@ -43,6 +43,12 @@
       "iframeSrc": "https://moviestrm.pages.dev/?id=m6plus"
     },
     {
+      "id": "SONY5",
+      "name": "SONY5",
+      "type": "iframe",
+      "iframeSrc": "https://tv4wapp.wapka.fun/?app=toffee&id=sony_sports_5_hd"
+    },
+    {
       "id": "TNT1",
       "name": "TNT SPORTS 1",
       "type": "iframe",
