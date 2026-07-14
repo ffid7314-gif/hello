@@ -46,8 +46,7 @@
       "id": "SONY5",
       "name": "SONY5",
       "type": "iframe",
-      "iframeSrc": "https://stream.ottplus.live/live/ten_5_hd_abr/live/ten_5_hd_720/chunks.m3u8"
-    },
+      "iframeSrc": "https://freestrm.pages.dev/"
     {
       "id": "TNT1",
       "name": "TNT SPORTS 1",
