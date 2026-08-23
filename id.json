@@ -40,7 +40,7 @@
       "id": "HINDI",
       "name": "HINDI",
       "type": "iframe",
-      "iframeSrc": "https://moviestrm.pages.dev/?id=zee-hindi"
+      "iframeSrc": "https://moviestr"
     },
     {
       "id": "M6",
@@ -76,7 +76,7 @@
       "id": "WILLOWTV",
       "name": "WILLOWTV",
       "type": "iframe",
-      "iframeSrc": "https://teamrowillow.pages.dev/willow"
+      "iframeSrc": "https://starsportshindi-8a6.pages.dev/"
     }
   ]
 }
