@@ -1,82 +1,44 @@
 {
   "iframes": [
     {
+      "id": "ENGLISH",
+      "type": "iframe",
+      "iframeSrc": "https://web2tv.pages.dev/ptest1?id=sony-ten-5-hd"
+    },
+    {
+      "id": "HINDI",
+      "type": "iframe",
+      "iframeSrc": "https://web2tv.pages.dev/ptest1?id=sony-ten-3-hd"
+    },
+    {
+      "id": "TAMIL",
+      "type": "iframe",
+      "iframeSrc": "https://web2tv.pages.dev/ptest1?id=sony-ten-4"
+    },
+    {
+      "id": "TELUGU",
+      "type": "iframe",
+      "iframeSrc": "https://web2tv.pages.dev/ptest1?id=sony-ten-4-hd"
+    },
+    {
       "id": "TNT",
-      "name": "CAZE TV",
       "type": "iframe",
       "iframeSrc": "https://matcheslinkz.pages.dev/tnt-2"
     },
     {
-      "id": "V&S",
-      "name": "SONY HD HINDI",
-      "type": "iframe",
-      "iframeSrc": "https://moviestrm.pages.dev/"
-    },
-    {
-      "id": "FC",
-      "name": "FANCODE",
-      "type": "iframe",
-      "iframeSrc": "https://web2tv.pages.dev/ptest1?id=sony-ten-1-hd"
-    },
-    {
-      "id": "FIFA1",
-      "name": "FIFA1",
-      "type": "iframe",
-      "iframeSrc": "https://freestrm.pages.dev/?id=hindi"
-    },
-    {
-      "id": "FOX",
-      "name": "FOX",
-      "type": "iframe",
-      "iframeSrc": "https://moviestrm.pages.dev/"
-    },
-    {
-      "id": "FUSSBALL",
-      "name": "FUSSBALL",
-      "type": "iframe",
-      "iframeSrc": "https://fifa-world-cup-live.pages.dev/fussball"
-    },
-    {
-      "id": "HINDI",
-      "name": "HINDI",
-      "type": "iframe",
-      "iframeSrc": "https://matcheslinkz-five.vercel.app/sw.html"
-    },
-    {
-      "id": "M6",
-      "name": "M6",
-      "type": "iframe",
-      "iframeSrc": "https://moviestrm.pages.dev/?id=m6plus"
-    },
-    {
-      "id": "SONY5",
-      "name": "SONY5",
-      "type": "iframe",
-      "iframeSrc": "https://freestrm.pages.dev/?id=sony5"
-    },
-    {
       "id": "TNT1",
-      "name": "TNT SPORTS 1",
       "type": "iframe",
       "iframeSrc": "https://teamrotnt01.pages.dev/"
     },
     {
-      "id": "TSN",
-      "name": "TSN",
+      "id": "WILLOWTV",
       "type": "iframe",
-      "iframeSrc": "https://moviestrm.pages.dev/?id=tsn"
+      "iframeSrc": "https://matcheslinkz.pages.dev/w"
     },
     {
       "id": "WTV",
-      "name": "DUTCH LIVE",
       "type": "iframe",
       "iframeSrc": "https://matchdekho.pages.dev/player/PR?url=https://papacito.cfd/m3u/324993/live.m3u8"
-    },
-    {
-      "id": "WILLOWTV",
-      "name": "WILLOWTV",
-      "type": "iframe",
-      "iframeSrc": "https://matcheslinkz.pages.dev/w"
     }
   ]
 }
